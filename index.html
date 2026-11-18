@@ -1,87 +1,27 @@
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SMA Katolik 1 Kabanjahe</title>
+
+<!-- MENGHUBUNGKAN CSS -->
 <link rel="stylesheet" href="style.css">
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-  color: #333;
-}
-
-header {
-  background: #073b70;
-  color: white;
-  padding: 25px;
-  text-align: center;
-}
-
-nav {
-  background: #052b50;
-  padding: 15px;
-  text-align: center;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 12px;
-}
-
-.hero {
-  background: linear-gradient(120deg, #073b70, #1683bd);
-  color: white;
-  text-align: center;
-  padding: 85px 20px;
-}
-
-.hero h2 {
-  font-size: 35px;
-  margin-bottom: 15px;
-}
-
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 35px 20px;
-}
-
-.card {
-  background: white;
-  padding: 25px;
-  margin: 15px 0;
-  border-radius: 10px;
-  box-shadow: 0 3px 12px #ddd;
-}
-
-footer {
-  background: #052b50;
-  color: white;
-  text-align: center;
-  padding: 25px;
-}
-</style>
-  
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
 <h1>SMA KATOLIK 1 KABANJAHE</h1>
 <p>Yayasan Perguruan Katolik Don Bosko</p>
 </header>
 
+<!-- MENU NAVIGASI -->
 <nav>
 <a href="#beranda">Beranda</a>
 <a href="#profil">Profil</a>
@@ -90,6 +30,7 @@ footer {
 <a href="#kontak">Kontak</a>
 </nav>
 
+<!-- HALAMAN BERANDA -->
 <section class="hero" id="beranda">
 <h2>Selamat Datang</h2>
 <p>Website Resmi SMA Katolik 1 Kabanjahe</p>
@@ -99,6 +40,7 @@ dan Berprestasi</p>
 
 <div class="container">
 
+<!-- PROFIL SEKOLAH -->
 <section id="profil" class="card">
 <h2>Profil Sekolah</h2>
 <p>
@@ -108,11 +50,13 @@ pendidikan berkualitas bagi peserta didik.
 </p>
 </section>
 
+<!-- BERITA SEKOLAH -->
 <section id="berita" class="card">
 <h2>Berita dan Kegiatan Sekolah</h2>
 <p>Informasi kegiatan dan prestasi sekolah.</p>
 </section>
 
+<!-- AKADEMIK -->
 <section id="akademik" class="card">
 <h2>Informasi Akademik</h2>
 <ul>
@@ -123,6 +67,7 @@ pendidikan berkualitas bagi peserta didik.
 </ul>
 </section>
 
+<!-- KONTAK -->
 <section id="kontak" class="card">
 <h2>Kontak Sekolah</h2>
 <p>Alamat: Kabanjahe, Sumatera Utara</p>
@@ -131,10 +76,15 @@ pendidikan berkualitas bagi peserta didik.
 
 </div>
 
+<!-- FOOTER -->
 <footer>
-<p>© 2026 SMA Katolik 1 Kabanjahe</p>
+<p>© <span id="currentYear">2026</span>
+SMA Katolik 1 Kabanjahe</p>
 <p>Yayasan Perguruan Katolik Don Bosko</p>
 </footer>
+
+<!-- MENGHUBUNGKAN JAVASCRIPT -->
 <script src="script.js"></script>
+
 </body>
 </html>
