@@ -1,0 +1,250 @@
+
+/* =================================
+   WEBSITE SMA KATOLIK 1 KABANJAHE
+   Yayasan Perguruan Katolik Don Bosko
+================================= */
+
+/* PENGATURAN DASAR */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f7fb;
+    color: #333;
+    line-height: 1.7;
+}
+
+/* HEADER */
+header {
+    background: #073b70;
+    color: white;
+    padding: 25px 15px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+header p {
+    color: #f5d77a;
+    font-size: 15px;
+}
+
+/* NAVIGASI */
+nav {
+    background: #052b50;
+    padding: 15px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    margin: 5px 12px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #f5d77a;
+}
+
+/* HERO / BERANDA */
+.hero {
+    background:
+    linear-gradient(
+        rgba(5, 43, 80, 0.85),
+        rgba(7, 59, 112, 0.85)
+    ),
+    url('https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1600');
+
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 110px 20px;
+}
+
+.hero h2 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+/* TOMBOL */
+.btn {
+    display: inline-block;
+    background: #e3b341;
+    color: #052b50;
+    padding: 12px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: white;
+    transform: translateY(-3px);
+}
+
+/* CONTAINER */
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+/* JUDUL BAGIAN */
+.section-title {
+    text-align: center;
+    color: #073b70;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 28px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.card h2 {
+    color: #073b70;
+    margin-bottom: 15px;
+}
+
+/* GRID INFORMASI */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+/* GAMBAR */
+img {
+    max-width: 100%;
+}
+
+.card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* DAFTAR */
+ul {
+    padding-left: 25px;
+}
+
+/* FORM */
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin: 8px 0 15px;
+    font-size: 15px;
+}
+
+button {
+    background: #073b70;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e3b341;
+    color: #052b50;
+}
+
+/* FOOTER */
+footer {
+    background: #052b50;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 5px;
+}
+
+footer a {
+    color: #f5d77a;
+    text-decoration: none;
+}
+
+/* RESPONSIVE HP DAN TABLET */
+@media (max-width: 768px) {
+
+    header h1 {
+        font-size: 21px;
+    }
+
+    nav a {
+        margin: 5px;
+        font-size: 14px;
+    }
+
+    .hero {
+        padding: 75px 15px;
+    }
+
+    .hero h2 {
+        font-size: 29px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 25px 15px;
+    }
+
+    .section-title {
+        font-size: 23px;
+    }
+}
+
+/* AKHIR CSS */
