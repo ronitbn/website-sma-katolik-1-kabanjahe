@@ -1,210 +1,107 @@
 
-/* ==========================================
-   WEBSITE SMA KATOLIK 1 KABANJAHE
-   Yayasan Perguruan Katolik Don Bosko
-========================================== */
+// TAHUN OTOMATIS
+document.getElementById("currentYear").textContent =
+    new Date().getFullYear();
 
-// 1. JAM DIGITAL
-function updateClock() {
-    const clock = document.getElementById("digitalClock");
+// MENU NAVIGASI HP
+const menuToggle = document.getElementById("menuToggle");
+const navbar = document.getElementById("navbar");
 
-    if (!clock) return;
+menuToggle.addEventListener("click", function () {
+    navbar.classList.toggle("show");
 
-    const now = new Date();
+    const isOpen = navbar.classList.contains("show");
 
-    clock.textContent = now.toLocaleTimeString("id-ID", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit"
-    });
-}
+    menuToggle.setAttribute("aria-expanded", isOpen);
+    menuToggle.textContent = isOpen ? "✕" : "☰";
+});
 
-setInterval(updateClock, 1000);
-updateClock();
+// MENUTUP MENU SETELAH DIKLIK
+const navLinks = document.querySelectorAll(".nav-link");
 
-
-// 2. TANGGAL HARI INI
-function updateDate() {
-    const dateElement = document.getElementById("todayDate");
-
-    if (!dateElement) return;
-
-    dateElement.textContent = new Date().toLocaleDateString(
-        "id-ID",
-        {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric"
-        }
-    );
-}
-
-updateDate();
-
-
-// 3. MENU MOBILE
-function toggleMenu() {
-    const menu = document.getElementById("navMenu");
-
-    if (menu) {
-        menu.classList.toggle("active");
-    }
-}
-
-
-// 4. MENUTUP MENU SETELAH DIKLIK
-document.querySelectorAll("nav a").forEach(link => {
+navLinks.forEach(function (link) {
     link.addEventListener("click", function () {
-        const menu = document.getElementById("navMenu");
+        navbar.classList.remove("show");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
 
-        if (menu) {
-            menu.classList.remove("active");
+        navLinks.forEach(function (item) {
+            item.classList.remove("active");
+        });
+
+        link.classList.add("active");
+    });
+});
+
+// MENANDAI MENU SESUAI BAGIAN YANG DIBUKA
+const sections = document.querySelectorAll("section[id]");
+
+window.addEventListener("scroll", function () {
+    let current = "";
+
+    sections.forEach(function (section) {
+        const sectionTop = section.offsetTop - 120;
+
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(function (link) {
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
         }
     });
 });
 
+// TOMBOL KEMBALI KE ATAS
+const backToTop = document.getElementById("backToTop");
 
-// 5. PENCARIAN BERITA
-function searchNews() {
-    const input = document.getElementById("searchInput");
-
-    if (!input) return;
-
-    const keyword = input.value.toLowerCase();
-
-    const newsCards = document.querySelectorAll(".news-card");
-
-    newsCards.forEach(card => {
-        const content = card.textContent.toLowerCase();
-
-        card.style.display = content.includes(keyword)
-            ? "block"
-            : "none";
-    });
-}
-
-
-// 6. GALERI FOTO
-function openGallery(imageSource) {
-    const modal = document.getElementById("galleryModal");
-    const modalImage = document.getElementById("modalImage");
-
-    if (modal && modalImage) {
-        modalImage.src = imageSource;
-        modal.style.display = "flex";
-    }
-}
-
-function closeGallery() {
-    const modal = document.getElementById("galleryModal");
-
-    if (modal) {
-        modal.style.display = "none";
-    }
-}
-
-
-// 7. TOMBOL KEMBALI KE ATAS
 window.addEventListener("scroll", function () {
-    const button = document.getElementById("backToTop");
-
-    if (!button) return;
-
-    button.style.display = window.scrollY > 300
-        ? "block"
-        : "none";
+    if (window.scrollY > 300) {
+        backToTop.style.display = "block";
+    } else {
+        backToTop.style.display = "none";
+    }
 });
 
-function backToTop() {
+backToTop.addEventListener("click", function () {
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
-}
-
-
-// 8. ANIMASI SAAT HALAMAN DIBUKA
-document.addEventListener("DOMContentLoaded", function () {
-
-    const elements = document.querySelectorAll(".card");
-
-    if ("IntersectionObserver" in window) {
-
-        const observer = new IntersectionObserver(entries => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("show");
-                    observer.unobserve(entry.target);
-                }
-
-            });
-
-        }, {
-            threshold: 0.15
-        });
-
-        elements.forEach(element => {
-            observer.observe(element);
-        });
-
-    } else {
-        elements.forEach(element => {
-            element.classList.add("show");
-        });
-    }
-
 });
 
+// FORMULIR KONTAK
+const contactForm = document.getElementById("contactForm");
 
-// 9. TAHUN OTOMATIS PADA FOOTER
-function updateYear() {
-    const year = document.getElementById("currentYear");
+contactForm.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-    if (year) {
-        year.textContent = new Date().getFullYear();
-    }
-}
+    const nama = document.getElementById("nama").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const pesan = document.getElementById("pesan").value.trim();
 
-updateYear();
-
-
-// 10. FORM KONTAK
-function sendContact() {
-
-    const name = document.getElementById("contactName");
-    const message = document.getElementById("contactMessage");
-
-    if (!name || !message) return;
-
-    if (name.value.trim() === "" ||
-        message.value.trim() === "") {
-
-        alert("Silakan isi nama dan pesan terlebih dahulu!");
+    if (!nama || !email || !pesan) {
+        alert("Mohon lengkapi semua data!");
         return;
     }
 
-    const email = "smark1kj@gmail.com";
-
     const subject = encodeURIComponent(
-        "Pesan dari Website SMA Katolik 1 Kabanjahe"
+        "Pesan Website SMA Katolik 1 Kabanjahe"
     );
 
     const body = encodeURIComponent(
-        "Nama: " + name.value +
-        "\n\nPesan:\n" + message.value
+        "Nama: " + nama +
+        "\nEmail: " + email +
+        "\n\nPesan:\n" + pesan
     );
 
-    window.location.href =
-        "mailto:" + email +
-        "?subject=" + subject +
-        "&body=" + body;
-}
+    const mailto =
+        "mailto:smark1kj@gmail.com?subject=" +
+        subject + "&body=" + body;
 
-
-// 11. NOTIFIKASI SELAMAT DATANG
-console.log(
-    "Selamat datang di Website SMA Katolik 1 Kabanjahe!"
-);
+    window.location.href = mailto;
+});
