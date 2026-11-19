@@ -1,89 +1,330 @@
 
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SMA Katolik 1 Kabanjahe</title>
-
-<!-- MENGHUBUNGKAN CSS -->
-<link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Website resmi SMA Katolik 1 Kabanjahe, Yayasan Perguruan Katolik Don Bosko.">
+    <title>SMA Katolik 1 Kabanjahe</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <!-- HEADER -->
-<header>
-<h1>SMA KATOLIK 1 KABANJAHE</h1>
-<p>Yayasan Perguruan Katolik Don Bosko</p>
+<header class="header">
+    <div class="header-content">
+        <div class="logo">
+            <div class="logo-icon">SK</div>
+            <div>
+                <h1>SMA KATOLIK 1 KABANJAHE</h1>
+                <p>Yayasan Perguruan Katolik Don Bosko</p>
+            </div>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle"
+                aria-label="Buka menu" aria-expanded="false">
+            ☰
+        </button>
+    </div>
 </header>
 
-<!-- MENU NAVIGASI -->
-<nav>
-<a href="#beranda">Beranda</a>
-<a href="#profil">Profil</a>
-<a href="#berita">Berita</a>
-<a href="#akademik">Akademik</a>
-<a href="#kontak">Kontak</a>
+<!-- NAVIGASI -->
+<nav class="navbar" id="navbar">
+    <a href="#beranda" class="nav-link active">Beranda</a>
+    <a href="#profil" class="nav-link">Profil</a>
+    <a href="#berita" class="nav-link">Berita</a>
+    <a href="#akademik" class="nav-link">Akademik</a>
+    <a href="#kontak" class="nav-link">Kontak</a>
 </nav>
 
-<!-- HALAMAN BERANDA -->
+<!-- BERANDA -->
 <section class="hero" id="beranda">
-<h2>Selamat Datang</h2>
-<p>Website Resmi SMA Katolik 1 Kabanjahe</p>
-<p>Mewujudkan Generasi Cerdas, Berkarakter
-dan Berprestasi</p>
+    <div class="hero-content">
+        <span class="welcome">SELAMAT DATANG DI WEBSITE RESMI KAMI</span>
+        <h2>Membangun Generasi Cerdas, Berkarakter dan Berprestasi</h2>
+        <p>
+            SMA Katolik 1 Kabanjahe berkomitmen memberikan
+            pendidikan berkualitas untuk membentuk generasi
+            yang unggul, beriman, dan berkarakter.
+        </p>
+        <a href="#profil" class="btn">Kenali Sekolah Kami</a>
+    </div>
 </section>
 
-<div class="container">
-
-<!-- PROFIL SEKOLAH -->
-<section id="profil" class="card">
-<h2>Profil Sekolah</h2>
-<p>
-SMA Katolik 1 Kabanjahe merupakan lembaga
-pendidikan yang berkomitmen memberikan
-pendidikan berkualitas bagi peserta didik.
-</p>
+<!-- SAMBUTAN -->
+<section class="container">
+    <div class="welcome-card">
+        <h2>Selamat Datang</h2>
+        <p>
+            Selamat datang di website resmi SMA Katolik 1 Kabanjahe.
+            Website ini menjadi media informasi sekolah, kegiatan
+            pendidikan, prestasi, serta komunikasi dengan masyarakat.
+        </p>
+    </div>
 </section>
 
-<!-- BERITA SEKOLAH -->
-<section id="berita" class="card">
-<h2>Berita dan Kegiatan Sekolah</h2>
-<p>Informasi kegiatan dan prestasi sekolah.</p>
+<!-- PROFIL -->
+<section id="profil" class="container section">
+    <div class="section-heading">
+        <span>INFORMASI SEKOLAH</span>
+        <h2>Profil Sekolah</h2>
+        <p>Mengenal lebih dekat SMA Katolik 1 Kabanjahe</p>
+    </div>
+
+    <div class="profile-grid">
+        <div class="profile-image">
+            <img src="images/gedung-sekolah.jpg"
+                 alt="Gedung SMA Katolik 1 Kabanjahe"
+                 onerror="this.style.display='none'">
+            <div class="image-placeholder">
+                Foto Gedung Sekolah
+            </div>
+        </div>
+
+        <div class="profile-text">
+            <h3>Tentang Sekolah</h3>
+            <p>
+                SMA Katolik 1 Kabanjahe merupakan lembaga pendidikan
+                di bawah Yayasan Perguruan Katolik Don Bosko.
+                Sekolah berkomitmen mengembangkan potensi peserta didik
+                melalui pendidikan akademik dan pembentukan karakter.
+            </p>
+
+            <h3>Visi Sekolah</h3>
+            <p>
+                Menjadi lembaga pendidikan yang menghasilkan
+                peserta didik cerdas, berkarakter, beriman,
+                mandiri, dan berprestasi.
+            </p>
+
+            <h3>Misi Sekolah</h3>
+            <ul>
+                <li>Meningkatkan kualitas pembelajaran.</li>
+                <li>Membentuk karakter dan kedisiplinan siswa.</li>
+                <li>Mengembangkan bakat dan kreativitas peserta didik.</li>
+                <li>Meningkatkan pemanfaatan teknologi pendidikan.</li>
+                <li>Menciptakan lingkungan sekolah yang nyaman.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>Nama Sekolah</h3>
+            <p>SMA Katolik 1 Kabanjahe</p>
+        </div>
+        <div class="info-card">
+            <h3>Yayasan</h3>
+            <p>Perguruan Katolik Don Bosko</p>
+        </div>
+        <div class="info-card">
+            <h3>Lokasi</h3>
+            <p>Kabanjahe, Sumatera Utara</p>
+        </div>
+        <div class="info-card">
+            <h3>Email</h3>
+            <p>smark1kj@gmail.com</p>
+        </div>
+    </div>
+</section>
+
+<!-- BERITA -->
+<section id="berita" class="section news-section">
+    <div class="container">
+        <div class="section-heading">
+            <span>INFORMASI TERBARU</span>
+            <h2>Berita dan Kegiatan Sekolah</h2>
+            <p>Dokumentasi aktivitas dan informasi sekolah</p>
+        </div>
+
+        <div class="news-grid">
+
+            <article class="news-card">
+                <img src="images/berita1.jpg"
+                     alt="Kegiatan pembelajaran"
+                     onerror="this.style.display='none'">
+                <div class="news-content">
+                    <span class="news-date">KEGIATAN SEKOLAH</span>
+                    <h3>Kegiatan Pembelajaran di Sekolah</h3>
+                    <p>
+                        Dokumentasi kegiatan belajar mengajar
+                        peserta didik SMA Katolik 1 Kabanjahe.
+                    </p>
+                    <a href="#kontak">Informasi lebih lanjut →</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="images/berita2.jpg"
+                     alt="Kegiatan siswa"
+                     onerror="this.style.display='none'">
+                <div class="news-content">
+                    <span class="news-date">KEGIATAN SISWA</span>
+                    <h3>Pengembangan Kreativitas Siswa</h3>
+                    <p>
+                        Kegiatan pengembangan bakat, minat,
+                        kreativitas, dan keterampilan siswa.
+                    </p>
+                    <a href="#kontak">Informasi lebih lanjut →</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="images/berita3.jpg"
+                     alt="Prestasi sekolah"
+                     onerror="this.style.display='none'">
+                <div class="news-content">
+                    <span class="news-date">PRESTASI SEKOLAH</span>
+                    <h3>Prestasi dan Pengembangan Pendidikan</h3>
+                    <p>
+                        Informasi mengenai pencapaian dan
+                        kegiatan pendidikan sekolah.
+                    </p>
+                    <a href="#kontak">Informasi lebih lanjut →</a>
+                </div>
+            </article>
+
+        </div>
+    </div>
 </section>
 
 <!-- AKADEMIK -->
-<section id="akademik" class="card">
-<h2>Informasi Akademik</h2>
-<ul>
-<li>Informasi siswa</li>
-<li>Informasi guru</li>
-<li>Jadwal pelajaran</li>
-<li>Kalender pendidikan</li>
-</ul>
+<section id="akademik" class="container section">
+    <div class="section-heading">
+        <span>LAYANAN PENDIDIKAN</span>
+        <h2>Informasi Akademik</h2>
+        <p>Informasi pendidikan SMA Katolik 1 Kabanjahe</p>
+    </div>
+
+    <div class="academic-grid">
+
+        <div class="academic-card">
+            <div class="academic-icon">👨‍🎓</div>
+            <h3>Data Siswa</h3>
+            <p>Informasi peserta didik dan kegiatan siswa.</p>
+            <a href="https://dapo.kemendikdasmen.go.id/"
+               target="_blank" rel="noopener">Lihat Referensi →</a>
+        </div>
+
+        <div class="academic-card">
+            <div class="academic-icon">👩‍🏫</div>
+            <h3>Data Guru</h3>
+            <p>Informasi tenaga pendidik dan tenaga kependidikan.</p>
+            <a href="#kontak">Hubungi Sekolah →</a>
+        </div>
+
+        <div class="academic-card">
+            <div class="academic-icon">📚</div>
+            <h3>Jadwal Pelajaran</h3>
+            <p>Informasi jadwal kegiatan belajar mengajar.</p>
+            <a href="#kontak">Informasi Jadwal →</a>
+        </div>
+
+        <div class="academic-card">
+            <div class="academic-icon">📅</div>
+            <h3>Kalender Pendidikan</h3>
+            <p>Informasi agenda dan kalender kegiatan akademik.</p>
+            <a href="#kontak">Informasi Kalender →</a>
+        </div>
+
+        <div class="academic-card">
+            <div class="academic-icon">🏆</div>
+            <h3>Prestasi Siswa</h3>
+            <p>Informasi pencapaian akademik dan nonakademik.</p>
+            <a href="#berita">Lihat Berita →</a>
+        </div>
+
+        <div class="academic-card">
+            <div class="academic-icon">💻</div>
+            <h3>Pembelajaran Informatika</h3>
+            <p>Informasi pembelajaran teknologi dan informatika.</p>
+            <a href="#kontak">Informasi Lanjut →</a>
+        </div>
+
+    </div>
 </section>
 
 <!-- KONTAK -->
-<section id="kontak" class="card">
-<h2>Kontak Sekolah</h2>
-<p>Alamat: Kabanjahe, Sumatera Utara</p>
-<p>Email: smark1kj@gmail.com</p>
+<section id="kontak" class="contact-section section">
+    <div class="container">
+        <div class="section-heading">
+            <span>HUBUNGI KAMI</span>
+            <h2>Kontak Sekolah</h2>
+            <p>Kami siap menerima pertanyaan dan informasi dari Anda.</p>
+        </div>
+
+        <div class="contact-grid">
+
+            <div class="contact-info">
+                <h3>Informasi Sekolah</h3>
+
+                <div class="contact-item">
+                    <strong>📍 Alamat</strong>
+                    <p>Kabanjahe, Sumatera Utara, Indonesia</p>
+                </div>
+
+                <div class="contact-item">
+                    <strong>📧 Email</strong>
+                    <p>
+                        <a href="mailto:smark1kj@gmail.com">
+                            smark1kj@gmail.com
+                        </a>
+                    </p>
+                </div>
+
+                <div class="contact-item">
+                    <strong>🏫 Yayasan</strong>
+                    <p>Yayasan Perguruan Katolik Don Bosko</p>
+                </div>
+
+            </div>
+
+            <div class="contact-form">
+                <h3>Kirim Pesan</h3>
+
+                <form id="contactForm">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama"
+                           placeholder="Masukkan nama Anda" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email"
+                           placeholder="Masukkan email Anda" required>
+
+                    <label for="pesan">Pesan</label>
+                    <textarea id="pesan" rows="5"
+                              placeholder="Tuliskan pesan Anda"
+                              required></textarea>
+
+                    <button type="submit" class="btn">
+                        Kirim Pesan
+                    </button>
+                </form>
+
+                <p class="form-note">
+                    Pesan akan disiapkan melalui aplikasi email Anda.
+                </p>
+            </div>
+
+        </div>
+    </div>
 </section>
 
-</div>
-
 <!-- FOOTER -->
-<footer>
-<p>© <span id="currentYear">2026</span>
-SMA Katolik 1 Kabanjahe</p>
-<p>Yayasan Perguruan Katolik Don Bosko</p>
+<footer class="footer">
+    <h3>SMA KATOLIK 1 KABANJAHE</h3>
+    <p>Yayasan Perguruan Katolik Don Bosko</p>
+    <p>Mewujudkan Generasi Cerdas, Berkarakter dan Berprestasi</p>
+
+    <div class="footer-line"></div>
+
+    <p>© <span id="currentYear"></span>
+       SMA Katolik 1 Kabanjahe. Hak Cipta Dilindungi.</p>
 </footer>
 
-<!-- MENGHUBUNGKAN JAVASCRIPT -->
+<button id="backToTop" title="Kembali ke atas">↑</button>
+
 <script src="script.js"></script>
 
 </body>
