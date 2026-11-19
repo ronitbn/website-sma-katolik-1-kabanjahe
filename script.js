@@ -105,3 +105,31 @@ contactForm.addEventListener("submit", function (event) {
 
     window.location.href = mailto;
 });
+
+// ===================================
+// PEMERIKSAAN KONEKSI SUPABASE
+// ===================================
+
+(async function cekKoneksiSupabase() {
+  try {
+    if (typeof supabaseClient === "undefined") {
+      throw new Error("Konfigurasi Supabase belum terbaca.");
+    }
+
+    const { data, error } =
+      await supabaseClient.auth.getSession();
+
+    if (error) throw error;
+
+    console.log("Supabase Client berhasil dimuat!");
+
+    if (data.session) {
+      console.log("Admin sudah memiliki sesi login.");
+    } else {
+      console.log("Supabase siap. Admin belum login.");
+    }
+
+  } catch (error) {
+    console.error("Pemeriksaan Supabase gagal:", error.message);
+  }
+})();
