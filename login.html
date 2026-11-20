@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - SMA Katolik 1 Kabanjahe</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #102c54, #176b87);
+        }
+
+        .login-container {
+            width: 90%;
+            max-width: 400px;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            color: #102c54;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 7px;
+            background: #102c54;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #176b87;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #loginMessage {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #b42318;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #176b87;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <h2>LOGIN ADMIN</h2>
+
+        <p class="subtitle">
+            PORTAL SMA SWASTA KATOLIK 1 KABANJAHE
+        </p>
+
+        <form id="loginForm">
+
+            <label for="email">Email Admin</label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Masukkan email admin"
+                autocomplete="username"
+                required
+            >
+
+            <label for="password">Password</label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Masukkan password"
+                autocomplete="current-password"
+                required
+            >
+
+            <button type="submit" id="loginButton">
+                LOGIN
+            </button>
+
+            <p id="loginMessage" role="status" aria-live="polite"></p>
+
+        </form>
+
+        <a href="index.html" class="back-link">
+            ← Kembali ke Website Sekolah
+        </a>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="login.js"></script>
+
+</body>
+</html>
