@@ -74,3 +74,44 @@ loginForm.addEventListener("submit", async function(event) {
     }
 
 });
+
+// FITUR LUPA PASSWORD ADMIN
+
+const forgotPassword =
+    document.getElementById("forgotPassword");
+
+if (forgotPassword) {
+    forgotPassword.addEventListener("click", async function(event) {
+        event.preventDefault();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        if (!email) {
+            loginMessage.style.color = "red";
+            loginMessage.textContent =
+                "Masukkan email admin terlebih dahulu.";
+            return;
+        }
+
+        forgotPassword.textContent = "Mengirim email...";
+
+        const { error } =
+            await supabaseClient.auth.resetPasswordForEmail(email, {
+                redirectTo:
+                    "https://ronitbn.github.io/website-sma-katolik-1-kabanjahe/update-password.html"
+            });
+
+        if (error) {
+            loginMessage.style.color = "red";
+            loginMessage.textContent =
+                "Gagal mengirim email: " + error.message;
+        } else {
+            loginMessage.style.color = "green";
+            loginMessage.textContent =
+                "Email pemulihan telah dikirim. Periksa kotak masuk email Anda.";
+        }
+
+        forgotPassword.textContent = "Lupa Password?";
+    });
+}
