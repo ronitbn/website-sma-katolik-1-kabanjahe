@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Berita Sekolah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+        <h1>KELOLA BERITA SEKOLAH</h1>
+        <h3>SMA SWASTA KATOLIK 1 KABANJAHE</h3>
+
+        <p>
+            <a href="admin.html">← Kembali ke Dashboard Admin</a>
+        </p>
+
+        <hr>
+
+        <h2>Tambah / Edit Berita</h2>
+
+        <form id="beritaForm">
+            <input type="hidden" id="beritaId">
+
+            <label>Judul Berita</label>
+            <input type="text" id="judul" required>
+
+            <label>Isi Berita</label>
+            <textarea id="isi" rows="8" required></textarea>
+
+            <label>Status Berita</label>
+            <select id="status">
+                <option value="draft">Draft</option>
+                <option value="published">Published</option>
+            </select>
+
+            <button type="submit">Simpan Berita</button>
+            <button type="button" id="batalEdit">Batal</button>
+        </form>
+
+        <hr>
+
+        <h2>Daftar Berita</h2>
+        <div id="daftarBerita">Memuat berita...</div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="berita.js"></script>
+
+</body>
+</html>
