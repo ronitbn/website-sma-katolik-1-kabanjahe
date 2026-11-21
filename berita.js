@@ -163,6 +163,7 @@ formBerita.addEventListener("submit", async function(event) {
     const id = document.getElementById("beritaId").value;
     const judul = document.getElementById("judul").value.trim();
     const isi = document.getElementById("isi").value.trim();
+    const kategori = document.getElementById("kategori").value;
     const status = document.getElementById("status").value;
     const file = inputGambar.files[0];
 
