@@ -49,6 +49,49 @@ fotoGuru.addEventListener("change", function() {
     previewFotoGuru.style.display = "block";
 });
 
+
+
+// =====================================
+// UPLOAD FOTO GURU KE SUPABASE STORAGE
+// =====================================
+
+async function uploadFotoGuru(file) {
+    if (!file) {
+        return null;
+    }
+
+    const ekstensi = {
+        "image/jpeg": "jpg",
+        "image/png": "png",
+        "image/webp": "webp"
+    };
+
+    const namaFile =
+        Date.now() + "-" +
+        crypto.randomUUID() + "." +
+        ekstensi[file.type];
+
+    const { data, error } = await supabaseClient
+        .storage
+        .from("foto-guru")
+        .upload(namaFile, file, {
+            cacheControl: "3600",
+            upsert: false,
+            contentType: file.type
+        });
+
+    if (error) {
+        throw error;
+    }
+
+    const { data: urlData } = supabaseClient
+        .storage
+        .from("foto-guru")
+        .getPublicUrl(data.path);
+
+    return urlData.publicUrl;
+}
+
 // ==========================================
 // PEMERIKSAAN LOGIN DAN HAK AKSES
 // ==========================================
