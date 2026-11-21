@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Data Guru - SMA Katolik 1 Kabanjahe</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #183b63;
+        }
+
+        .header {
+            background: #12345a;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #c98513;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .page-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-heading h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .teacher-list {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+        }
+
+        .teacher-card {
+            background: white;
+            padding: 28px 20px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+        }
+
+        .teacher-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .teacher-card h3 {
+            margin: 10px 0;
+            color: #12345a;
+        }
+
+        .teacher-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .empty-message {
+            background: white;
+            padding: 35px 20px;
+            border-radius: 14px;
+            text-align: center;
+            color: #64748b;
+            grid-column: 1 / -1;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <h1>SMA SWASTA KATOLIK 1 KABANJAHE</h1>
+        <p>Portal Informasi Akademik Sekolah</p>
+    </header>
+
+    <main class="container">
+
+        <a href="index.html#akademik" class="back-link">
+            ← Kembali ke Informasi Akademik
+        </a>
+
+        <div class="page-heading">
+            <h2>Data Guru</h2>
+            <p>
+                Informasi tenaga pendidik
+                SMA Swasta Katolik 1 Kabanjahe
+            </p>
+        </div>
+
+        <div class="teacher-list" id="teacherList">
+
+            <div class="empty-message">
+                <h3>Data Guru</h3>
+                <p>
+                    Informasi data guru akan ditampilkan
+                    di halaman ini.
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        © SMA Swasta Katolik 1 Kabanjahe
+    </footer>
+
+</body>
+</html>
