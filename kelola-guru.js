@@ -287,11 +287,17 @@ let hasil;
             ? "Data guru berhasil diperbarui."
             : "Data guru berhasil ditambahkan.";
 
-        formGuru.reset();
-        idGuruEdit = null;
+        
+formGuru.reset();
 
-        batalEdit.hidden = true;
-        simpanGuru.textContent = "Simpan Data Guru";
+idGuruEdit = null;
+fotoUrlSaatIni = null;
+
+previewFotoGuru.src = "";
+previewFotoGuru.style.display = "none";
+
+batalEdit.hidden = true;
+simpanGuru.textContent = "Simpan Data Guru";
 
         await muatDaftarGuru();
 
