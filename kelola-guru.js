@@ -10,6 +10,7 @@ const pesan = document.getElementById("pesan");
 
 const namaGuru = document.getElementById("namaGuru");
 const jabatanGuru = document.getElementById("jabatanGuru");
+const fotoGuru = document.getElementById("fotoGuru");
 const previewFotoGuru =
     document.getElementById("previewFotoGuru");
 const bioGuru = document.getElementById("bioGuru");
@@ -19,6 +20,8 @@ const simpanGuru = document.getElementById("simpanGuru");
 const batalEdit = document.getElementById("batalEdit");
 
 let fotoUrlSaatIni = null;
+let idGuruEdit = null;
+let adminTerverifikasi = false;
 
 // =====================================
 // PREVIEW FOTO GURU
