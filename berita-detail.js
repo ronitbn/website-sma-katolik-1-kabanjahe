@@ -72,3 +72,52 @@ async function tampilkanDetailBerita() {
 
 // JALANKAN HALAMAN
 document.addEventListener("DOMContentLoaded", tampilkanDetailBerita);
+
+
+// =====================================
+// FITUR BAGIKAN BERITA
+// =====================================
+
+document.addEventListener("DOMContentLoaded", function () {
+    const linkBerita = window.location.href;
+    const judulBerita = document.title;
+
+    const pesanWhatsApp =
+        encodeURIComponent(judulBerita + "\n" + linkBerita);
+
+    const tombolWhatsApp =
+        document.getElementById("bagikanWhatsApp");
+
+    const tombolFacebook =
+        document.getElementById("bagikanFacebook");
+
+    const tombolSalin =
+        document.getElementById("salinLink");
+
+    const pesanSalin =
+        document.getElementById("pesanSalin");
+
+    if (tombolWhatsApp) {
+        tombolWhatsApp.href =
+            "https://wa.me/?text=" + pesanWhatsApp;
+    }
+
+    if (tombolFacebook) {
+        tombolFacebook.href =
+            "https://www.facebook.com/sharer/sharer.php?u=" +
+            encodeURIComponent(linkBerita);
+    }
+
+    if (tombolSalin) {
+        tombolSalin.addEventListener("click", async function () {
+            try {
+                await navigator.clipboard.writeText(linkBerita);
+                pesanSalin.textContent = "Link berita berhasil disalin!";
+            } catch (error) {
+                pesanSalin.textContent =
+                    "Gagal menyalin link. Silakan salin alamat halaman secara manual.";
+            }
+        });
+    }
+});
+
