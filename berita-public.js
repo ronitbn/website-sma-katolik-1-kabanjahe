@@ -58,12 +58,32 @@ async function muatBeritaPublik() {
         const title = document.createElement("h3");
         title.textContent = berita.judul;
 
-        const paragraph = document.createElement("p");
-        paragraph.textContent = berita.isi;
+        
+const paragraph = document.createElement("p");
 
-        content.append(date, title, paragraph);
-        card.appendChild(content);
-        newsGrid.appendChild(card);
+paragraph.textContent =
+    berita.isi.length > 150
+        ? berita.isi.substring(0, 150) + "..."
+        : berita.isi;
+
+// TOMBOL BACA SELENGKAPNYA
+const tombolDetail = document.createElement("a");
+
+tombolDetail.href =
+    "berita-detail.html?id=" +
+    encodeURIComponent(berita.id);
+
+tombolDetail.textContent = "Baca Selengkapnya";
+
+tombolDetail.className = "tombol-detail";
+
+// MENAMPILKAN KONTEN
+content.append(date, title, paragraph, tombolDetail);
+
+card.appendChild(content);
+
+newsGrid.appendChild(card);
+
     });
 }
 
