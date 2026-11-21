@@ -127,6 +127,9 @@ async function tampilkanBerita() {
                 ? berita.isi.substring(0, 200) + "..."
                 : berita.isi;
 
+        const kategori = document.createElement("p");
+        kategori.textContent = "Kategori: " + berita.kategori;
+
         const status = document.createElement("p");
         status.textContent = "Status: " + berita.status;
 
