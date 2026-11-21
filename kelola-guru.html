@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kelola Data Guru - SMA Katolik 1 Kabanjahe</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        header {
+            background: #123b67;
+            color: white;
+            padding: 22px;
+        }
+
+        header h2 {
+            margin: 0 0 6px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #123b67;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .panel {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px #00000010;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            padding: 11px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .save-button {
+            background: #123b67;
+            color: white;
+        }
+
+        .cancel-button {
+            background: #64748b;
+            color: white;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        th, td {
+            padding: 13px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: left;
+        }
+
+        th {
+            background: #f8fafc;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        #pesan {
+            margin-top: 15px;
+            color: #123b67;
+        }
+
+        @media (max-width: 650px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>KELOLA DATA GURU</h2>
+    <p>SMA Swasta Katolik 1 Kabanjahe</p>
+</header>
+
+<main class="container">
+
+    <a href="admin.html" class="back-link">
+        ← Kembali ke Dashboard Admin
+    </a>
+
+    <section class="panel">
+
+        <h2>Formulir Data Guru</h2>
+        <p>Masukkan informasi tenaga pendidik sekolah.</p>
+
+        <form id="formGuru">
+
+            <div class="form-grid">
+
+                <div class="form-group full">
+                    <label for="namaGuru">Nama Guru</label>
+                    <input
+                        type="text"
+                        id="namaGuru"
+                        required
+                        placeholder="Masukkan nama guru">
+                </div>
+
+                <div class="form-group">
+                    <label for="jabatanGuru">Jabatan / Mata Pelajaran</label>
+                    <input
+                        type="text"
+                        id="jabatanGuru"
+                        placeholder="Contoh: Guru Informatika"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="statusGuru">Status</label>
+                    <select id="statusGuru">
+                        <option value="true">Aktif</option>
+                        <option value="false">Tidak Aktif</option>
+                    </select>
+                </div>
+
+                <div class="form-group full">
+                    <label for="fotoGuru">Alamat Foto Guru</label>
+                    <input
+                        type="url"
+                        id="fotoGuru"
+                        placeholder="Masukkan URL foto jika tersedia">
+                </div>
+
+                <div class="form-group full">
+                    <label for="bioGuru">Deskripsi Singkat</label>
+                    <textarea
+                        id="bioGuru"
+                        placeholder="Masukkan deskripsi singkat guru"></textarea>
+                </div>
+
+            </div>
+
+            <div class="actions">
+
+                <button type="submit" class="save-button" id="simpanGuru">
+                    Simpan Data Guru
+                </button>
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    id="batalEdit"
+                    hidden>
+                    Batal Edit
+                </button>
+
+            </div>
+
+        </form>
+
+        <p id="pesan"></p>
+
+    </section>
+
+    <section class="panel">
+
+        <h2>Daftar Data Guru</h2>
+
+        <div class="table-wrapper">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama Guru</th>
+                        <th>Jabatan</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+
+                <tbody id="daftarGuru">
+                    <tr>
+                        <td colspan="5">Memuat data guru...</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="kelola-guru.js"></script>
+
+</body>
+</html>
