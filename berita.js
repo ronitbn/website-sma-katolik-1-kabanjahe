@@ -151,6 +151,12 @@ async function tampilkanBerita() {
 // MENYIMPAN BERITA BARU ATAU EDIT
 // =====================================
 
+
+// =====================================
+// MENYIMPAN BERITA BARU ATAU EDIT
+// DENGAN UPLOAD FOTO KE SUPABASE
+// =====================================
+
 formBerita.addEventListener("submit", async function(event) {
     event.preventDefault();
 
@@ -158,6 +164,7 @@ formBerita.addEventListener("submit", async function(event) {
     const judul = document.getElementById("judul").value.trim();
     const isi = document.getElementById("isi").value.trim();
     const status = document.getElementById("status").value;
+    const file = inputGambar.files[0];
 
     if (!judul || !isi) {
         alert("Judul dan isi berita wajib diisi.");
@@ -169,6 +176,59 @@ formBerita.addEventListener("submit", async function(event) {
         isi: isi,
         status: status
     };
+
+    // VALIDASI DAN UPLOAD FOTO
+    if (file) {
+        const tipeDiizinkan = [
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+        ];
+
+        if (!tipeDiizinkan.includes(file.type)) {
+            alert("Format foto harus JPG, PNG, atau WEBP.");
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            alert("Ukuran foto maksimal 5 MB.");
+            return;
+        }
+
+        const ekstensi = {
+            "image/jpeg": "jpg",
+            "image/png": "png",
+            "image/webp": "webp"
+        };
+
+        const namaFile =
+            Date.now() + "-" +
+            Math.random().toString(36).substring(2) +
+            "." + ekstensi[file.type];
+
+        const { data: uploadData, error: uploadError } =
+            await supabaseClient
+                .storage
+                .from("berita")
+                .upload(namaFile, file, {
+                    cacheControl: "3600",
+                    upsert: false,
+                    contentType: file.type
+                });
+
+        if (uploadError) {
+            alert("Gagal mengunggah foto: " + uploadError.message);
+            return;
+        }
+
+        const { data: publicData } =
+            supabaseClient
+                .storage
+                .from("berita")
+                .getPublicUrl(uploadData.path);
+
+        dataBerita.gambar_url = publicData.publicUrl;
+    }
 
     let hasil;
 
@@ -198,8 +258,12 @@ formBerita.addEventListener("submit", async function(event) {
     formBerita.reset();
     document.getElementById("beritaId").value = "";
 
+    previewGambar.src = "";
+    previewGambar.style.display = "none";
+
     await tampilkanBerita();
 });
+
 
 // =====================================
 // MENGEDIT BERITA
