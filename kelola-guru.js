@@ -18,8 +18,36 @@ const statusGuru = document.getElementById("statusGuru");
 const simpanGuru = document.getElementById("simpanGuru");
 const batalEdit = document.getElementById("batalEdit");
 
-let idGuruEdit = null;
-let adminTerverifikasi = false;
+let fotoUrlSaatIni = null;
+
+// =====================================
+// PREVIEW FOTO GURU
+// =====================================
+
+fotoGuru.addEventListener("change", function() {
+    const file = fotoGuru.files[0];
+
+    if (!file) {
+        previewFotoGuru.style.display = "none";
+        previewFotoGuru.src = "";
+        return;
+    }
+
+    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+        alert("Format foto harus JPG, PNG, atau WEBP.");
+        fotoGuru.value = "";
+        return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+        alert("Ukuran foto maksimal 2 MB.");
+        fotoGuru.value = "";
+        return;
+    }
+
+    previewFotoGuru.src = URL.createObjectURL(file);
+    previewFotoGuru.style.display = "block";
+});
 
 // ==========================================
 // PEMERIKSAAN LOGIN DAN HAK AKSES
