@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detail Berita - SMA Swasta Katolik 1 Kabanjahe</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .detail-berita {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 25px;
+            background: #ffffff;
+            border-radius: 12px;
+        }
+
+        .detail-berita img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .detail-berita h1 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .detail-tanggal {
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .detail-isi {
+            line-height: 1.8;
+            font-size: 17px;
+            white-space: pre-line;
+        }
+
+        .tombol-kembali {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #123c69;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="detail-berita">
+
+        <div id="detailBerita">
+            Memuat berita...
+        </div>
+
+        <a href="index.html#berita" class="tombol-kembali">
+            ← Kembali ke Berita
+        </a>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="berita-detail.js"></script>
+
+</body>
+</html>
