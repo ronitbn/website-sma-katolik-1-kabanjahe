@@ -1,0 +1,409 @@
+
+/* =====================================
+   PPDB ONLINE SMA KATOLIK 1 KABANJAHE
+   ===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #263445;
+    line-height: 1.7;
+}
+
+/* HEADER */
+
+.ppdb-header {
+    background: #09264a;
+    color: white;
+    padding: 18px 7%;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-icon {
+    width: 55px;
+    height: 55px;
+    background: #d9aa38;
+    color: #09264a;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo h2 {
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.logo p {
+    font-size: 12px;
+    color: #d5e1ef;
+}
+
+.back-home {
+    color: white;
+    text-decoration: none;
+    border: 1px solid #d9aa38;
+    padding: 9px 20px;
+    border-radius: 7px;
+    transition: 0.3s;
+}
+
+.back-home:hover {
+    background: #d9aa38;
+    color: #09264a;
+}
+
+/* HERO */
+
+.ppdb-hero {
+    min-height: 420px;
+    background:
+        linear-gradient(
+            110deg,
+            rgba(5, 29, 59, 0.95),
+            rgba(8, 57, 104, 0.82)
+        ),
+        url("images/gedung-sekolah.jpg.jpg")
+        center/cover no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 70px 20px;
+    color: white;
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.hero-content span {
+    display: inline-block;
+    color: #f0c75e;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.hero-content h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.hero-content h2 {
+    font-size: 25px;
+    color: #f0c75e;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 17px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background: #d9aa38;
+    color: #09264a;
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: white;
+    transform: translateY(-3px);
+}
+
+/* INFORMASI */
+
+.info-section {
+    max-width: 1150px;
+    margin: 65px auto;
+    padding: 0 20px;
+}
+
+.info-section > h2 {
+    text-align: center;
+    color: #09264a;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.info-card {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 12px;
+    border-top: 4px solid #d9aa38;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+    transition: 0.3s;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+.info-card h3 {
+    color: #09264a;
+    margin-bottom: 12px;
+}
+
+/* FORMULIR */
+
+.form-section {
+    max-width: 850px;
+    margin: 70px auto;
+    padding: 0 20px;
+}
+
+.form-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.form-heading h2 {
+    color: #09264a;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.form-heading p {
+    color: #687789;
+}
+
+#ppdbForm {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 35px rgba(0,0,0,0.07);
+}
+
+#ppdbForm h3 {
+    color: #09264a;
+    font-size: 20px;
+    margin: 30px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e8edf4;
+}
+
+#ppdbForm h3:first-child {
+    margin-top: 0;
+}
+
+#ppdbForm label:not(.agreement) {
+    display: block;
+    font-weight: bold;
+    margin: 15px 0 7px;
+    color: #34465b;
+}
+
+#ppdbForm input:not([type="checkbox"]),
+#ppdbForm select,
+#ppdbForm textarea {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #d5deea;
+    border-radius: 7px;
+    background: #fbfcfe;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    transition: 0.3s;
+}
+
+#ppdbForm input:focus,
+#ppdbForm select:focus,
+#ppdbForm textarea:focus {
+    border-color: #1764a5;
+    box-shadow: 0 0 0 3px rgba(23,100,165,0.1);
+}
+
+#ppdbForm input[type="file"] {
+    background: #f4f7fb;
+    cursor: pointer;
+}
+
+#ppdbForm textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.upload-note {
+    background: #edf4fb;
+    color: #31577d;
+    padding: 12px;
+    border-radius: 7px;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.privacy-note {
+    background: #fff8e7;
+    border-left: 4px solid #d9aa38;
+    padding: 15px;
+    margin: 25px 0;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.agreement {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.agreement input {
+    margin-top: 6px;
+}
+
+/* TOMBOL KIRIM */
+
+#submitPPDB {
+    width: 100%;
+    background: #09264a;
+    color: white;
+    border: none;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#submitPPDB:hover {
+    background: #d9aa38;
+    color: #09264a;
+}
+
+#submitPPDB:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#ppdbMessage {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* FOOTER */
+
+footer {
+    background: #09264a;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+    margin-top: 70px;
+}
+
+footer h3 {
+    color: #f0c75e;
+    margin-bottom: 10px;
+}
+
+footer p {
+    font-size: 14px;
+    margin: 5px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo {
+        flex-direction: column;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ppdb-hero {
+        min-height: 380px;
+    }
+
+    .hero-content h1 {
+        font-size: 30px;
+    }
+
+    #ppdbForm {
+        padding: 25px 18px;
+    }
+
+    .form-heading h2 {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .logo h2 {
+        font-size: 15px;
+    }
+
+    .back-home {
+        width: 100%;
+        text-align: center;
+    }
+
+    .ppdb-hero {
+        padding: 55px 18px;
+    }
+
+    .hero-content h2 {
+        font-size: 20px;
+    }
+
+    .hero-content p {
+        font-size: 15px;
+    }
+
+    #ppdbForm {
+        padding: 20px 15px;
+    }
+}
