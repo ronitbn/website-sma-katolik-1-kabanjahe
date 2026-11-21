@@ -10,7 +10,8 @@ const pesan = document.getElementById("pesan");
 
 const namaGuru = document.getElementById("namaGuru");
 const jabatanGuru = document.getElementById("jabatanGuru");
-const fotoGuru = document.getElementById("fotoGuru");
+const previewFotoGuru =
+    document.getElementById("previewFotoGuru");
 const bioGuru = document.getElementById("bioGuru");
 const statusGuru = document.getElementById("statusGuru");
 
