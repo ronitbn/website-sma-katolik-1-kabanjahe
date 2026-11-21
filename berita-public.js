@@ -1,4 +1,15 @@
 
+// =====================================
+// BERITA PUBLIK SEKOLAH
+// SMA SWASTA KATOLIK 1 KABANJAHE
+// =====================================
+
+let semuaBerita = [];
+
+// =====================================
+// MEMUAT BERITA DARI SUPABASE
+// =====================================
+
 async function muatBeritaPublik() {
     const newsGrid = document.getElementById("newsGrid");
 
@@ -18,14 +29,28 @@ async function muatBeritaPublik() {
         return;
     }
 
+    semuaBerita = data || [];
+
+    tampilkanBerita(semuaBerita);
+}
+
+// =====================================
+// MENAMPILKAN BERITA
+// =====================================
+
+function tampilkanBerita(daftarBerita) {
+    const newsGrid = document.getElementById("newsGrid");
+
+    if (!newsGrid) return;
+
     newsGrid.replaceChildren();
 
-    if (!data || data.length === 0) {
-        newsGrid.textContent = "Belum ada berita yang diterbitkan.";
+    if (daftarBerita.length === 0) {
+        newsGrid.textContent = "Berita yang dicari tidak ditemukan.";
         return;
     }
 
-    data.forEach((berita) => {
+    daftarBerita.forEach((berita) => {
         const card = document.createElement("article");
         card.className = "news-card";
 
@@ -33,9 +58,11 @@ async function muatBeritaPublik() {
             const img = document.createElement("img");
             img.src = berita.gambar_url;
             img.alt = berita.judul || "Foto berita sekolah";
+
             img.onerror = () => {
                 img.style.display = "none";
             };
+
             card.appendChild(img);
         }
 
@@ -44,6 +71,7 @@ async function muatBeritaPublik() {
 
         const date = document.createElement("span");
         date.className = "news-date";
+
         date.textContent = berita.created_at
             ? new Date(berita.created_at).toLocaleDateString(
                 "id-ID",
@@ -58,33 +86,73 @@ async function muatBeritaPublik() {
         const title = document.createElement("h3");
         title.textContent = berita.judul;
 
-        
-const paragraph = document.createElement("p");
+        const paragraph = document.createElement("p");
 
-paragraph.textContent =
-    berita.isi.length > 150
-        ? berita.isi.substring(0, 150) + "..."
-        : berita.isi;
+        const isiBerita = berita.isi || "";
 
-// TOMBOL BACA SELENGKAPNYA
-const tombolDetail = document.createElement("a");
+        paragraph.textContent =
+            isiBerita.length > 150
+                ? isiBerita.substring(0, 150) + "..."
+                : isiBerita;
 
-tombolDetail.href =
-    "berita-detail.html?id=" +
-    encodeURIComponent(berita.id);
+        const tombolDetail = document.createElement("a");
 
-tombolDetail.textContent = "Baca Selengkapnya";
+        tombolDetail.href =
+            "berita-detail.html?id=" +
+            encodeURIComponent(berita.id);
 
-tombolDetail.className = "tombol-detail";
+        tombolDetail.textContent = "Baca Selengkapnya";
+        tombolDetail.className = "tombol-detail";
 
-// MENAMPILKAN KONTEN
-content.append(date, title, paragraph, tombolDetail);
+        content.append(date, title, paragraph, tombolDetail);
 
-card.appendChild(content);
+        card.appendChild(content);
 
-newsGrid.appendChild(card);
-
+        newsGrid.appendChild(card);
     });
 }
 
-document.addEventListener("DOMContentLoaded", muatBeritaPublik);
+// =====================================
+// FUNGSI PENCARIAN BERITA
+// =====================================
+
+function cariBeritaSekolah() {
+    const input = document.getElementById("cariBerita");
+
+    if (!input) return;
+
+    const kataKunci = input.value
+        .trim()
+        .toLowerCase();
+
+    const hasilPencarian = semuaBerita.filter((berita) => {
+        const judul = (berita.judul || "").toLowerCase();
+        const isi = (berita.isi || "").toLowerCase();
+
+        return (
+            judul.includes(kataKunci) ||
+            isi.includes(kataKunci)
+        );
+    });
+
+    tampilkanBerita(hasilPencarian);
+}
+
+// =====================================
+// MENJALANKAN PENCARIAN
+// =====================================
+
+document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("cariBerita");
+    const tombol = document.getElementById("tombolCariBerita");
+
+    if (input) {
+        input.addEventListener("input", cariBeritaSekolah);
+    }
+
+    if (tombol) {
+        tombol.addEventListener("click", cariBeritaSekolah);
+    }
+
+    muatBeritaPublik();
+});
