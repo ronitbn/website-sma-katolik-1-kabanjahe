@@ -275,6 +275,7 @@ function editBerita(berita) {
     document.getElementById("beritaId").value = berita.id;
     document.getElementById("judul").value = berita.judul;
     document.getElementById("isi").value = berita.isi;
+    document.getElementById("kategori").value = berita.kategori;
     document.getElementById("status").value = berita.status;
 
     window.scrollTo({
