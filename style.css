@@ -286,11 +286,8 @@ body {
 
 .news-card img {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    height: auto;
+    height: 210px;
     object-fit: cover;
-    object-position: center;
-    display: block;
 }
 
 
