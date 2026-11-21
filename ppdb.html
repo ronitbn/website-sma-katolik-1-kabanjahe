@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pendaftaran Peserta Didik Baru SMA Katolik 1 Kabanjahe">
+    <title>PPDB Online - SMA Katolik 1 Kabanjahe</title>
+    <link rel="stylesheet" href="ppdb.css">
+</head>
+
+<body>
+
+<header class="ppdb-header">
+    <div class="header-content">
+        <div class="logo">
+            <div class="logo-icon">SK</div>
+            <div>
+                <h2>SMA KATOLIK 1 KABANJAHE</h2>
+                <p>Yayasan Perguruan Katolik Don Bosko</p>
+            </div>
+        </div>
+        <a href="index.html" class="back-home">Beranda</a>
+    </div>
+</header>
+
+<section class="ppdb-hero">
+    <div class="hero-content">
+        <span>PPDB ONLINE</span>
+        <h1>Penerimaan Peserta Didik Baru</h1>
+        <h2>SMA Katolik 1 Kabanjahe</h2>
+        <p>
+            Mari bergabung bersama kami untuk membangun
+            generasi cerdas, berkarakter dan berprestasi.
+        </p>
+        <a href="#formulir" class="btn">DAFTAR SEKARANG</a>
+    </div>
+</section>
+
+<section class="info-section">
+    <h2>Informasi Pendaftaran</h2>
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>Persyaratan</h3>
+            <p>Pas foto, Kartu Keluarga, ijazah atau SKL,
+            dan Akta Kelahiran.</p>
+        </div>
+
+        <div class="info-card">
+            <h3>Jadwal</h3>
+            <p>Jadwal pendaftaran mengikuti pengumuman
+            resmi sekolah.</p>
+        </div>
+
+        <div class="info-card">
+            <h3>Informasi</h3>
+            <p>Hubungi pihak sekolah untuk informasi
+            lebih lanjut mengenai PPDB.</p>
+        </div>
+    </div>
+</section>
+
+<section class="form-section" id="formulir">
+
+    <div class="form-heading">
+        <h2>Formulir Pendaftaran Online</h2>
+        <p>Silakan lengkapi data calon peserta didik dengan benar.</p>
+    </div>
+
+    <form id="ppdbForm">
+
+        <h3>1. Identitas Calon Siswa</h3>
+
+        <label for="nama">Nama Lengkap *</label>
+        <input type="text" id="nama" name="nama_lengkap"
+               maxlength="150" required>
+
+        <label for="nisn">NISN *</label>
+        <input type="text" id="nisn" name="nisn"
+               inputmode="numeric" pattern="[0-9]{10}"
+               maxlength="10" required>
+
+        <label for="tempat">Tempat Lahir *</label>
+        <input type="text" id="tempat" name="tempat_lahir"
+               maxlength="100" required>
+
+        <label for="tanggal">Tanggal Lahir *</label>
+        <input type="date" id="tanggal" name="tanggal_lahir"
+               required>
+
+        <label for="jk">Jenis Kelamin *</label>
+        <select id="jk" name="jenis_kelamin" required>
+            <option value="">Pilih Jenis Kelamin</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+        </select>
+
+        <h3>2. Alamat dan Pendidikan</h3>
+
+        <label for="alamat">Alamat Lengkap *</label>
+        <textarea id="alamat" name="alamat"
+                  maxlength="500" required></textarea>
+
+        <label for="asal">Asal Sekolah *</label>
+        <input type="text" id="asal" name="asal_sekolah"
+               maxlength="150" required>
+
+        <label for="tahun">Tahun Lulus *</label>
+        <input type="number" id="tahun" name="tahun_lulus"
+               min="2020" max="2035" required>
+
+        <h3>3. Data Orang Tua / Wali</h3>
+
+        <label for="ortu">Nama Orang Tua / Wali *</label>
+        <input type="text" id="ortu" name="nama_ortu"
+               maxlength="150" required>
+
+        <label for="hp">Nomor HP Orang Tua *</label>
+        <input type="tel" id="hp" name="no_hp_ortu"
+               maxlength="25" required>
+
+        <label for="email">Email (Opsional)</label>
+        <input type="email" id="email" name="email"
+               maxlength="254">
+
+        <h3>4. Upload Dokumen Persyaratan</h3>
+
+        <p class="upload-note">
+            Format JPG, PNG atau PDF. Maksimal 5 MB per dokumen.
+        </p>
+
+        <label for="foto">Pas Foto *</label>
+        <input type="file" id="foto" name="pas_foto"
+               accept=".jpg,.jpeg,.png" required>
+
+        <label for="kk">Kartu Keluarga *</label>
+        <input type="file" id="kk" name="kk"
+               accept=".jpg,.jpeg,.png,.pdf" required>
+
+        <label for="ijazah">Ijazah / Surat Keterangan Lulus *</label>
+        <input type="file" id="ijazah" name="ijazah"
+               accept=".jpg,.jpeg,.png,.pdf" required>
+
+        <label for="akta">Akta Kelahiran *</label>
+        <input type="file" id="akta" name="akta"
+               accept=".jpg,.jpeg,.png,.pdf" required>
+
+        <div class="privacy-note">
+            Data dan dokumen pendaftaran merupakan informasi
+            pribadi dan hanya boleh diakses oleh petugas
+            sekolah yang berwenang.
+        </div>
+
+        <label class="agreement">
+            <input type="checkbox" id="persetujuan" required>
+            Saya menyatakan data yang diberikan benar dan
+            menyetujui pemrosesan data untuk keperluan PPDB.
+        </label>
+
+        <button type="submit" id="submitPPDB">
+            KIRIM PENDAFTARAN
+        </button>
+
+        <p id="ppdbMessage" role="status" aria-live="polite"></p>
+
+    </form>
+</section>
+
+<footer>
+    <h3>SMA KATOLIK 1 KABANJAHE</h3>
+    <p>Yayasan Perguruan Katolik Don Bosko</p>
+    <p>© 2026 SMA Katolik 1 Kabanjahe</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="ppdb.js"></script>
+
+</body>
+</html>
