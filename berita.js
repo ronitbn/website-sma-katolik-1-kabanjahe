@@ -175,6 +175,7 @@ formBerita.addEventListener("submit", async function(event) {
     const dataBerita = {
         judul: judul,
         isi: isi,
+        kategori: kategori,
         status: status
     };
 
