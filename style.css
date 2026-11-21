@@ -319,6 +319,54 @@ body {
     text-decoration: none;
 }
 
+/* EFEK MODERN KARTU BERITA */
+
+.news-card {
+    animation: newsFadeIn 0.7s ease both;
+}
+
+.news-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.news-card img {
+    transition: transform 0.5s ease;
+}
+
+.news-card:hover img {
+    transform: scale(1.06);
+}
+
+@keyframes newsFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .news-card,
+    .news-card img {
+        animation: none;
+        transition: none;
+    }
+
+    .news-card:hover {
+        transform: none;
+    }
+
+    .news-card:hover img {
+        transform: none;
+    }
+}
+
+
 /* AKADEMIK */
 .academic-grid {
     display: grid;
