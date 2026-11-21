@@ -240,20 +240,35 @@ formGuru.addEventListener("submit", async function(event) {
 
     pesan.textContent = "";
 
-    const dataGuru = {
-        name: namaGuru.value.trim(),
-        position: jabatanGuru.value.trim(),
-        short_bio: bioGuru.value.trim() || null,
-        photo_url: fotoGuru.value.trim() || null,
-        is_active: statusGuru.value === "true"
-    };
+    
+const fileFoto = fotoGuru.files[0];
+
 
     try {
-        if (!dataGuru.name || !dataGuru.position) {
-            throw new Error("Nama dan jabatan guru wajib diisi.");
-        }
+        
+// Validasi nama dan jabatan
+if (!namaGuru.value.trim() || !jabatanGuru.value.trim()) {
+    throw new Error("Nama dan jabatan guru wajib diisi.");
+}
 
-        let hasil;
+// Upload foto jika Admin memilih foto baru
+let photoUrl = fotoUrlSaatIni;
+
+if (fileFoto) {
+    photoUrl = await uploadFotoGuru(fileFoto);
+}
+
+// Menyiapkan data guru
+const dataGuru = {
+    name: namaGuru.value.trim(),
+    position: jabatanGuru.value.trim(),
+    short_bio: bioGuru.value.trim() || null,
+    photo_url: photoUrl,
+    is_active: statusGuru.value === "true"
+};
+
+let hasil;
+
 
         if (idGuruEdit) {
             hasil = await supabaseClient
@@ -306,7 +321,17 @@ function editGuru(guru) {
     namaGuru.value = guru.name || "";
     jabatanGuru.value = guru.position || "";
     bioGuru.value = guru.short_bio || "";
-    fotoGuru.value = guru.photo_url || "";
+    fotoUrlSaatIni = guru.photo_url || null;
+
+if (fotoUrlSaatIni) {
+    previewFotoGuru.src = fotoUrlSaatIni;
+    previewFotoGuru.style.display = "block";
+} else {
+    previewFotoGuru.src = "";
+    previewFotoGuru.style.display = "none";
+}
+
+fotoGuru.value = "";
     statusGuru.value = String(guru.is_active);
 
     simpanGuru.textContent = "Perbarui Data Guru";
