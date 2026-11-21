@@ -11,6 +11,49 @@ const tombolBatal = document.getElementById("batalEdit");
 let userAdmin = null;
 
 // =====================================
+// PREVIEW FOTO BERITA
+// =====================================
+
+const inputGambar = document.getElementById("gambarBerita");
+const previewGambar = document.getElementById("previewGambar");
+
+inputGambar.addEventListener("change", function() {
+    const file = inputGambar.files[0];
+
+    if (!file) {
+        previewGambar.src = "";
+        previewGambar.style.display = "none";
+        return;
+    }
+
+    const tipeDiizinkan = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ];
+
+    if (!tipeDiizinkan.includes(file.type)) {
+        alert("Format foto harus JPG, PNG, atau WEBP.");
+        inputGambar.value = "";
+        previewGambar.src = "";
+        previewGambar.style.display = "none";
+        return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+        alert("Ukuran foto maksimal 5 MB.");
+        inputGambar.value = "";
+        previewGambar.src = "";
+        previewGambar.style.display = "none";
+        return;
+    }
+
+    previewGambar.src = URL.createObjectURL(file);
+    previewGambar.style.display = "block";
+});
+
+
+// =====================================
 // MEMERIKSA LOGIN DAN HAK AKSES ADMIN
 // =====================================
 
