@@ -5,58 +5,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Detail Berita - SMA Swasta Katolik 1 Kabanjahe</title>
+    <title>Detail Berita | SMA Swasta Katolik 1 Kabanjahe</title>
 
     <link rel="stylesheet" href="style.css">
 
     <style>
-        .detail-berita {
-            max-width: 900px;
-            margin: 60px auto;
-            padding: 25px;
-            background: #ffffff;
-            border-radius: 12px;
+        body {
+            margin: 0;
+            background: #f4f6f9;
+            font-family: Arial, sans-serif;
+            color: #333;
         }
 
-        .detail-berita img {
+        .detail-header {
+            background: #123c69;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .detail-header h2 {
+            margin: 0;
+            font-size: 25px;
+        }
+
+        .detail-header p {
+            margin: 8px 0 0;
+        }
+
+        .detail-nav {
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .detail-nav a {
+            color: #123c69;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .detail-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .detail-container img {
             width: 100%;
-            max-height: 500px;
+            max-height: 480px;
             object-fit: cover;
             border-radius: 10px;
             margin: 20px 0;
         }
 
-        .detail-berita h1 {
+        .detail-container h1 {
             font-size: 32px;
-            margin-bottom: 12px;
+            line-height: 1.4;
+            color: #123c69;
         }
 
         .detail-tanggal {
-            color: #777;
-            margin-bottom: 20px;
+            color: #888;
+            font-size: 14px;
         }
 
         .detail-isi {
-            line-height: 1.8;
             font-size: 17px;
+            line-height: 1.9;
+            text-align: justify;
             white-space: pre-line;
         }
 
         .tombol-kembali {
             display: inline-block;
-            margin-top: 25px;
-            padding: 12px 20px;
+            margin-top: 30px;
+            padding: 13px 22px;
             background: #123c69;
             color: white;
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .tombol-kembali:hover {
+            background: #0b2949;
+        }
+
+        .detail-footer {
+            background: #123c69;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 600px) {
+            .detail-container {
+                margin: 20px 12px;
+                padding: 20px;
+            }
+
+            .detail-container h1 {
+                font-size: 24px;
+            }
+
+            .detail-isi {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <main class="detail-berita">
+    <!-- HEADER -->
+    <header class="detail-header">
+        <h2>SMA SWASTA KATOLIK 1 KABANJAHE</h2>
+        <p>Berkarakter, Disiplin, dan Berprestasi</p>
+    </header>
+
+    <!-- NAVIGASI -->
+    <nav class="detail-nav">
+        <a href="index.html">Beranda</a>
+        <a href="index.html#berita">Berita Sekolah</a>
+    </nav>
+
+    <!-- DETAIL BERITA -->
+    <main class="detail-container">
 
         <div id="detailBerita">
             Memuat berita...
@@ -67,6 +147,14 @@
         </a>
 
     </main>
+
+    <!-- FOOTER -->
+    <footer class="detail-footer">
+        <p>
+            © 2026 SMA Swasta Katolik 1 Kabanjahe.
+            Semua Hak Dilindungi.
+        </p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="config.js"></script>
