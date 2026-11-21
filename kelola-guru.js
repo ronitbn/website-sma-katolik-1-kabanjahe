@@ -349,16 +349,22 @@ fotoGuru.value = "";
 // BATAL EDIT
 // ==========================================
 
+
 batalEdit.addEventListener("click", function() {
     formGuru.reset();
 
     idGuruEdit = null;
+    fotoUrlSaatIni = null;
+
+    previewFotoGuru.src = "";
+    previewFotoGuru.style.display = "none";
 
     batalEdit.hidden = true;
     simpanGuru.textContent = "Simpan Data Guru";
 
     pesan.textContent = "Edit data dibatalkan.";
 });
+
 
 // ==========================================
 // HAPUS DATA GURU
