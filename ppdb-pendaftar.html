@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Data Pendaftar PPDB</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f3f5f9;
+            color: #263238;
+        }
+
+        header {
+            background: #123b63;
+            color: white;
+            padding: 22px;
+        }
+
+        header h1 {
+            font-size: 23px;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 25px auto;
+            padding: 0 18px;
+        }
+
+        .kembali {
+            display: inline-block;
+            background: #123b63;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 22px;
+        }
+
+        .panel {
+            background: white;
+            padding: 22px;
+            border-radius: 10px;
+            box-shadow: 0 2px 9px rgba(0,0,0,0.06);
+        }
+
+        .panel h2 {
+            margin-bottom: 8px;
+        }
+
+        .panel p {
+            color: #607080;
+            margin-bottom: 20px;
+        }
+
+        .filter-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        input, select {
+            padding: 11px;
+            border: 1px solid #ccd3dc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        select {
+            min-width: 170px;
+        }
+
+        .table-area {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 750px;
+        }
+
+        th, td {
+            padding: 13px;
+            border-bottom: 1px solid #e5e9ef;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background: #eef3f8;
+            color: #123b63;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 5px;
+            background: #fff3cd;
+            color: #795600;
+        }
+
+        .status.diterima {
+            background: #d9f2df;
+            color: #176b2c;
+        }
+
+        .status.ditolak {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .tombol-detail {
+            background: #1565c0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        #pesanPendaftar {
+            margin-top: 15px;
+            color: #607080;
+        }
+
+        @media(max-width: 600px) {
+            header h1 {
+                font-size: 19px;
+            }
+
+            .panel {
+                padding: 14px;
+            }
+
+            .filter-area {
+                flex-direction: column;
+            }
+
+            input, select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>DATA PENDAFTAR PPDB</h1>
+    <p>SMA SWASTA KATOLIK 1 KABANJAHE</p>
+</header>
+
+<main class="container">
+
+    <a href="ppdb-admin.html" class="kembali">
+        ← Kembali ke Dashboard PPDB
+    </a>
+
+    <section class="panel">
+
+        <h2>Daftar Calon Peserta Didik Baru</h2>
+
+        <p>
+            Daftar seluruh siswa yang telah melakukan pendaftaran.
+        </p>
+
+        <div class="filter-area">
+
+            <input
+                type="text"
+                id="cariPendaftar"
+                placeholder="Cari nama atau nomor pendaftaran..."
+            >
+
+            <select id="filterStatus">
+                <option value="">Semua Status</option>
+                <option value="menunggu">Menunggu</option>
+                <option value="diverifikasi">Diverifikasi</option>
+                <option value="diterima">Diterima</option>
+                <option value="ditolak">Ditolak</option>
+            </select>
+
+        </div>
+
+        <div class="table-area">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Nomor Pendaftaran</th>
+                        <th>Nama Lengkap</th>
+                        <th>Asal Sekolah</th>
+                        <th>Tanggal Daftar</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+
+                <tbody id="daftarPendaftar">
+                    <tr>
+                        <td colspan="7">Memuat data pendaftar...</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div id="pesanPendaftar"></div>
+
+    </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="ppdb-pendaftar.js"></script>
+
+</body>
+</html>
