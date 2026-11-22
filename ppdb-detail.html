@@ -235,19 +235,70 @@
         </div>
     </section>
 
+    
     <section class="panel">
         <h2>Status Pendaftaran</h2>
 
         <p>
-            Status:
+            Status Saat Ini:
             <span id="statusPendaftaran" class="status">-</span>
         </p>
 
         <p style="margin-top:15px;">
-            Catatan Admin:
+            Catatan Admin Saat Ini:
             <strong id="catatanAdmin">-</strong>
         </p>
     </section>
+
+    <section class="panel">
+        <h2>Verifikasi Pendaftaran</h2>
+
+        <form id="formVerifikasi">
+
+            <div style="margin-bottom:18px;">
+                <label for="statusBaru">
+                    Pilih Status Pendaftaran
+                </label>
+
+                <select
+                    id="statusBaru"
+                    required
+                    style="width:100%;padding:12px;margin-top:8px;border:1px solid #ccc;border-radius:6px;"
+                >
+                    <option value="menunggu">Menunggu</option>
+                    <option value="diverifikasi">Diverifikasi</option>
+                    <option value="diterima">Diterima</option>
+                    <option value="ditolak">Ditolak</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom:18px;">
+                <label for="catatanBaru">
+                    Catatan Admin
+                </label>
+
+                <textarea
+                    id="catatanBaru"
+                    rows="4"
+                    placeholder="Masukkan catatan hasil verifikasi..."
+                    style="width:100%;padding:12px;margin-top:8px;border:1px solid #ccc;border-radius:6px;"
+                ></textarea>
+            </div>
+
+            <button
+                type="submit"
+                id="tombolSimpanVerifikasi"
+                style="background:#123b63;color:white;padding:12px 20px;border:none;border-radius:6px;cursor:pointer;"
+            >
+                Simpan Verifikasi
+            </button>
+
+        </form>
+
+        <p id="pesanVerifikasi" style="margin-top:15px;"></p>
+    </section>
+</main>
+
 
 </main>
 
