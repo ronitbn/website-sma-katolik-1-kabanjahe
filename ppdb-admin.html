@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin PPDB</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f3f5f9;
+            color: #263238;
+        }
+
+        header {
+            background: #123b63;
+            color: white;
+            padding: 22px;
+        }
+
+        header h1 {
+            font-size: 23px;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 25px auto;
+            padding: 0 18px;
+        }
+
+        .top-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .top-menu a,
+        .top-menu button {
+            background: #123b63;
+            color: white;
+            border: none;
+            padding: 11px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .top-menu button {
+            background: #b3261e;
+        }
+
+        .welcome {
+            margin-bottom: 22px;
+        }
+
+        .welcome h2 {
+            font-size: 22px;
+            margin-bottom: 7px;
+        }
+
+        .welcome p {
+            color: #607080;
+        }
+
+        .statistik {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 22px;
+            border-radius: 10px;
+            box-shadow: 0 2px 9px rgba(0,0,0,0.06);
+            border-left: 5px solid #1976d2;
+        }
+
+        .stat-card h3 {
+            font-size: 14px;
+            color: #607080;
+            margin-bottom: 12px;
+        }
+
+        .stat-card strong {
+            font-size: 30px;
+            color: #123b63;
+        }
+
+        .panel {
+            background: white;
+            padding: 22px;
+            border-radius: 10px;
+            box-shadow: 0 2px 9px rgba(0,0,0,0.06);
+        }
+
+        .panel h2 {
+            font-size: 19px;
+            margin-bottom: 10px;
+        }
+
+        .panel p {
+            color: #607080;
+            line-height: 1.6;
+        }
+
+        #pesanDashboard {
+            margin-top: 15px;
+            color: #b3261e;
+            font-size: 14px;
+        }
+
+        @media (max-width: 800px) {
+            .statistik {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .statistik {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>DASHBOARD ADMIN PPDB</h1>
+        <p>SMA SWASTA KATOLIK 1 KABANJAHE</p>
+    </header>
+
+    <main class="container">
+
+        <nav class="top-menu">
+            <a href="admin.html">Dashboard Utama</a>
+            <a href="ppdb-pendaftar.html">Data Pendaftar</a>
+            <button type="button" id="logoutPPDB">Keluar</button>
+        </nav>
+
+        <section class="welcome">
+            <h2>Selamat Datang, Petugas PPDB</h2>
+            <p>Kelola dan pantau proses penerimaan peserta didik baru.</p>
+        </section>
+
+        <section class="statistik">
+
+            <div class="stat-card">
+                <h3>Total Pendaftar</h3>
+                <strong id="totalPendaftar">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <h3>Menunggu Verifikasi</h3>
+                <strong id="menungguVerifikasi">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <h3>Diterima</h3>
+                <strong id="jumlahDiterima">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <h3>Ditolak</h3>
+                <strong id="jumlahDitolak">0</strong>
+            </div>
+
+        </section>
+
+        <section class="panel">
+            <h2>Informasi PPDB</h2>
+            <p>
+                Halaman ini digunakan untuk memantau jumlah pendaftar,
+                memeriksa dokumen, melakukan verifikasi, dan mengelola
+                status penerimaan calon peserta didik baru.
+            </p>
+
+            <div id="pesanDashboard">
+                Memeriksa akses admin...
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="ppdb-admin.js"></script>
+
+</body>
+</html>
