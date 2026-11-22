@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detail Pendaftar PPDB</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f3f5f9;
+            color: #263238;
+        }
+
+        header {
+            background: #123b63;
+            color: white;
+            padding: 22px;
+        }
+
+        header h1 {
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 0 18px;
+        }
+
+        .kembali {
+            display: inline-block;
+            background: #123b63;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .panel {
+            background: white;
+            padding: 24px;
+            border-radius: 10px;
+            box-shadow: 0 2px 9px rgba(0,0,0,0.06);
+            margin-bottom: 20px;
+        }
+
+        .panel h2 {
+            color: #123b63;
+            font-size: 19px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid #e5e9ef;
+            padding-bottom: 12px;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .detail-item label {
+            display: block;
+            font-size: 13px;
+            color: #607080;
+            margin-bottom: 6px;
+        }
+
+        .detail-item p {
+            font-size: 15px;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .dokumen-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e9ef;
+        }
+
+        .dokumen-item a {
+            color: #1565c0;
+            text-decoration: none;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 5px;
+            background: #fff3cd;
+            color: #795600;
+        }
+
+        .status.diterima {
+            background: #d9f2df;
+            color: #176b2c;
+        }
+
+        .status.ditolak {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        #pesanDetail {
+            color: #607080;
+            line-height: 1.6;
+        }
+
+        @media(max-width: 600px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                padding: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>DETAIL PENDAFTAR PPDB</h1>
+    <p>SMA SWASTA KATOLIK 1 KABANJAHE</p>
+</header>
+
+<main class="container">
+
+    <a href="ppdb-pendaftar.html" class="kembali">
+        ← Kembali ke Data Pendaftar
+    </a>
+
+    <div id="pesanDetail">
+        Memuat informasi pendaftar...
+    </div>
+
+    <section class="panel">
+        <h2>Identitas Calon Siswa</h2>
+
+        <div class="detail-grid">
+            <div class="detail-item">
+                <label>Nomor Pendaftaran</label>
+                <p id="nomorPendaftaran">-</p>
+            </div>
+
+            <div class="detail-item">
+                <label>Nama Lengkap</label>
+                <p id="namaLengkap">-</p>
+            </div>
+
+            <div class="detail-item">
+                <label>Jenis Kelamin</label>
+                <p id="jenisKelamin">-</p>
+            </div>
+
+            <div class="detail-item">
+                <label>NISN</label>
+                <p id="nisn">-</p>
+            </div>
+
+            <div class="detail-item">
+                <label>Tempat Lahir</label>
+                <p id="tempatLahir">-</p>
+            </div>
+
+            <div class="detail-item">
+                <label>Tanggal Lahir</label>
+                <p id="tanggalLahir">-</p>
+            </div>
+
+            <div class="detail-item">
+                <label>Asal Sekolah</label>
+                <p id="asalSekolah">-</p>
+            </div>
+
+            <div class="detail-item">
+                <label>Alamat</label>
+                <p id="alamat">-</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Data Orang Tua</h2>
+
+        <div class="detail-grid">
+            <div class="detail-item">
+                <label>Nama Ayah</label>
+                <p id="namaAyah">-</p>
+            </div>
+
+            <div class="detail-item">
+                <label>Nama Ibu</label>
+                <p id="namaIbu">-</p>
+            </div>
+
+            <div class="detail-item">
+                <label>Nomor HP Orang Tua</label>
+                <p id="nomorHp">-</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Dokumen Pendaftaran</h2>
+
+        <div class="dokumen-item">
+            <strong>Foto Siswa:</strong>
+            <span id="fotoSiswa">Belum tersedia</span>
+        </div>
+
+        <div class="dokumen-item">
+            <strong>Kartu Keluarga:</strong>
+            <span id="dokumenKK">Belum tersedia</span>
+        </div>
+
+        <div class="dokumen-item">
+            <strong>Ijazah:</strong>
+            <span id="dokumenIjazah">Belum tersedia</span>
+        </div>
+
+        <div class="dokumen-item">
+            <strong>Akta Kelahiran:</strong>
+            <span id="dokumenAkta">Belum tersedia</span>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Status Pendaftaran</h2>
+
+        <p>
+            Status:
+            <span id="statusPendaftaran" class="status">-</span>
+        </p>
+
+        <p style="margin-top:15px;">
+            Catatan Admin:
+            <strong id="catatanAdmin">-</strong>
+        </p>
+    </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="ppdb-detail.js"></script>
+
+</body>
+</html>
