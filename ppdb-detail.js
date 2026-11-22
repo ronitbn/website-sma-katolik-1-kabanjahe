@@ -1,10 +1,15 @@
 
 // =============================================
-// DETAIL PENDAFTAR PPDB
+// DETAIL DAN VERIFIKASI PENDAFTAR PPDB
 // SMA SWASTA KATOLIK 1 KABANJAHE
 // =============================================
 
 const pesanDetail = document.getElementById("pesanDetail");
+const formVerifikasi = document.getElementById("formVerifikasi");
+const pesanVerifikasi = document.getElementById("pesanVerifikasi");
+const tombolSimpanVerifikasi = document.getElementById("tombolSimpanVerifikasi");
+
+let dataPendaftarAktif = null;
 
 // =============================================
 // FORMAT TANGGAL
@@ -146,9 +151,7 @@ async function muatDetailPendaftar() {
         return;
     }
 
-    // =========================================
-    // INFORMASI CALON SISWA
-    // =========================================
+    dataPendaftarAktif = data;
 
     tampilkanTeks("nomorPendaftaran", data.nomor_pendaftaran);
     tampilkanTeks("namaLengkap", data.nama_lengkap);
@@ -159,52 +162,125 @@ async function muatDetailPendaftar() {
     tampilkanTeks("asalSekolah", data.asal_sekolah);
     tampilkanTeks("alamat", data.alamat);
 
-    // =========================================
-    // INFORMASI ORANG TUA
-    // =========================================
-
     tampilkanTeks("namaAyah", data.nama_ayah);
     tampilkanTeks("namaIbu", data.nama_ibu);
     tampilkanTeks("nomorHp", data.nomor_hp_orang_tua);
 
-    // =========================================
-    // STATUS PENDAFTARAN
-    // =========================================
-
-    tampilkanTeks("statusPendaftaran", data.status);
+    tampilkanStatus(data.status);
     tampilkanTeks("catatanAdmin", data.catatan_admin);
 
-    // =========================================
-    // DOKUMEN PENDAFTAR
-    // =========================================
+    const statusBaru = document.getElementById("statusBaru");
+    const catatanBaru = document.getElementById("catatanBaru");
 
-    await tampilkanDokumen(
-        "fotoSiswa",
-        data.foto_siswa,
-        "Foto Siswa"
-    );
+    if (statusBaru) {
+        statusBaru.value = data.status || "menunggu";
+    }
 
-    await tampilkanDokumen(
-        "dokumenKK",
-        data.dokumen_kk,
-        "Kartu Keluarga"
-    );
+    if (catatanBaru) {
+        catatanBaru.value = data.catatan_admin || "";
+    }
 
-    await tampilkanDokumen(
-        "dokumenIjazah",
-        data.dokumen_ijazah,
-        "Ijazah"
-    );
-
-    await tampilkanDokumen(
-        "dokumenAkta",
-        data.dokumen_akta,
-        "Akta Kelahiran"
-    );
+    await tampilkanDokumen("fotoSiswa", data.foto_siswa, "Foto Siswa");
+    await tampilkanDokumen("dokumenKK", data.dokumen_kk, "Kartu Keluarga");
+    await tampilkanDokumen("dokumenIjazah", data.dokumen_ijazah, "Ijazah");
+    await tampilkanDokumen("dokumenAkta", data.dokumen_akta, "Akta Kelahiran");
 
     if (pesanDetail) {
         pesanDetail.textContent = "Data pendaftar berhasil dimuat.";
     }
+}
+
+// =============================================
+// TAMPILKAN STATUS
+// =============================================
+
+function tampilkanStatus(status) {
+    const elemen = document.getElementById("statusPendaftaran");
+
+    if (!elemen) return;
+
+    elemen.textContent = status || "-";
+    elemen.className = "status";
+
+    if (status === "diterima") {
+        elemen.classList.add("diterima");
+    } else if (status === "ditolak") {
+        elemen.classList.add("ditolak");
+    }
+}
+
+// =============================================
+// SIMPAN HASIL VERIFIKASI
+// =============================================
+
+if (formVerifikasi) {
+    formVerifikasi.addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        if (!dataPendaftarAktif) {
+            pesanVerifikasi.textContent = "Data pendaftar belum tersedia.";
+            return;
+        }
+
+        const statusBaru = document.getElementById("statusBaru").value;
+        const catatanBaru = document.getElementById("catatanBaru").value.trim();
+
+        const daftarStatus = [
+            "menunggu",
+            "diverifikasi",
+            "diterima",
+            "ditolak"
+        ];
+
+        if (!daftarStatus.includes(statusBaru)) {
+            pesanVerifikasi.textContent = "Status tidak valid.";
+            return;
+        }
+
+        tombolSimpanVerifikasi.disabled = true;
+        tombolSimpanVerifikasi.textContent = "Menyimpan...";
+
+        pesanVerifikasi.textContent = "Sedang menyimpan hasil verifikasi...";
+
+        try {
+            const { data, error } = await supabaseClient
+                .from("ppdb_pendaftar")
+                .update({
+                    status: statusBaru,
+                    catatan_admin: catatanBaru,
+                    updated_at: new Date().toISOString()
+                })
+                .eq("id", dataPendaftarAktif.id)
+                .select("status, catatan_admin")
+                .maybeSingle();
+
+            if (error) {
+                throw error;
+            }
+
+            if (!data) {
+                throw new Error("Data tidak ditemukan atau perubahan tidak tersimpan.");
+            }
+
+            dataPendaftarAktif.status = data.status;
+            dataPendaftarAktif.catatan_admin = data.catatan_admin;
+
+            tampilkanStatus(data.status);
+            tampilkanTeks("catatanAdmin", data.catatan_admin);
+
+            pesanVerifikasi.textContent =
+                "Hasil verifikasi berhasil disimpan.";
+
+        } catch (error) {
+            console.error("Gagal menyimpan verifikasi:", error);
+
+            pesanVerifikasi.textContent =
+                "Gagal menyimpan verifikasi. Silakan periksa koneksi dan hak akses.";
+        } finally {
+            tombolSimpanVerifikasi.disabled = false;
+            tombolSimpanVerifikasi.textContent = "Simpan Verifikasi";
+        }
+    });
 }
 
 // =============================================
