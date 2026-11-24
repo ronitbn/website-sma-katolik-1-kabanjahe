@@ -11,6 +11,13 @@ const tombolSimpanVerifikasi = document.getElementById("tombolSimpanVerifikasi")
 
 let dataPendaftarAktif = null;
 
+const daftarStatus = [
+    "Menunggu Verifikasi",
+    "Sedang Diproses",
+    "Diterima",
+    "Ditolak"
+];
+
 // =============================================
 // FORMAT TANGGAL
 // =============================================
@@ -162,10 +169,12 @@ async function muatDetailPendaftar() {
     tampilkanTeks("asalSekolah", data.asal_sekolah);
     tampilkanTeks("alamat", data.alamat);
 
-    tampilkanTeks("namaAyah", data.nama_ayah);
-    tampilkanTeks("namaIbu", data.nama_ibu);
-    tampilkanTeks("nomorHp", data.nomor_hp_orang_tua);
+    // Data orang tua
+    tampilkanTeks("namaAyah", data.nama_ortu);
+    tampilkanTeks("namaIbu", "-");
+    tampilkanTeks("nomorHp", data.no_hp_ortu);
 
+    // Status dan catatan admin
     tampilkanStatus(data.status);
     tampilkanTeks("catatanAdmin", data.catatan_admin);
 
@@ -173,17 +182,39 @@ async function muatDetailPendaftar() {
     const catatanBaru = document.getElementById("catatanBaru");
 
     if (statusBaru) {
-        statusBaru.value = data.status || "menunggu";
+        statusBaru.value = daftarStatus.includes(data.status)
+            ? data.status
+            : daftarStatus[0];
     }
 
     if (catatanBaru) {
         catatanBaru.value = data.catatan_admin || "";
     }
 
-    await tampilkanDokumen("fotoSiswa", data.foto_siswa, "Foto Siswa");
-    await tampilkanDokumen("dokumenKK", data.dokumen_kk, "Kartu Keluarga");
-    await tampilkanDokumen("dokumenIjazah", data.dokumen_ijazah, "Ijazah");
-    await tampilkanDokumen("dokumenAkta", data.dokumen_akta, "Akta Kelahiran");
+    // Dokumen siswa
+    await tampilkanDokumen(
+        "fotoSiswa",
+        data.pas_foto_path,
+        "Foto Siswa"
+    );
+
+    await tampilkanDokumen(
+        "dokumenKK",
+        data.kk_path,
+        "Kartu Keluarga"
+    );
+
+    await tampilkanDokumen(
+        "dokumenIjazah",
+        data.ijazah_path,
+        "Ijazah"
+    );
+
+    await tampilkanDokumen(
+        "dokumenAkta",
+        data.akta_path,
+        "Akta Kelahiran"
+    );
 
     if (pesanDetail) {
         pesanDetail.textContent = "Data pendaftar berhasil dimuat.";
@@ -202,9 +233,9 @@ function tampilkanStatus(status) {
     elemen.textContent = status || "-";
     elemen.className = "status";
 
-    if (status === "diterima") {
+    if (status === "Diterima") {
         elemen.classList.add("diterima");
-    } else if (status === "ditolak") {
+    } else if (status === "Ditolak") {
         elemen.classList.add("ditolak");
     }
 }
@@ -218,37 +249,35 @@ if (formVerifikasi) {
         event.preventDefault();
 
         if (!dataPendaftarAktif) {
-            pesanVerifikasi.textContent = "Data pendaftar belum tersedia.";
+            pesanVerifikasi.textContent =
+                "Data pendaftar belum tersedia.";
             return;
         }
 
-        const statusBaru = document.getElementById("statusBaru").value;
-        const catatanBaru = document.getElementById("catatanBaru").value.trim();
+        const statusBaru =
+            document.getElementById("statusBaru").value;
 
-        const daftarStatus = [
-            "menunggu",
-            "diverifikasi",
-            "diterima",
-            "ditolak"
-        ];
+        const catatanBaru =
+            document.getElementById("catatanBaru").value.trim();
 
         if (!daftarStatus.includes(statusBaru)) {
-            pesanVerifikasi.textContent = "Status tidak valid.";
+            pesanVerifikasi.textContent =
+                "Status pendaftaran tidak valid.";
             return;
         }
 
         tombolSimpanVerifikasi.disabled = true;
         tombolSimpanVerifikasi.textContent = "Menyimpan...";
 
-        pesanVerifikasi.textContent = "Sedang menyimpan hasil verifikasi...";
+        pesanVerifikasi.textContent =
+            "Sedang menyimpan hasil verifikasi...";
 
         try {
             const { data, error } = await supabaseClient
                 .from("ppdb_pendaftar")
                 .update({
                     status: statusBaru,
-                    catatan_admin: catatanBaru,
-                    updated_at: new Date().toISOString()
+                    catatan_admin: catatanBaru
                 })
                 .eq("id", dataPendaftarAktif.id)
                 .select("status, catatan_admin")
@@ -259,12 +288,16 @@ if (formVerifikasi) {
             }
 
             if (!data) {
-                throw new Error("Data tidak ditemukan atau perubahan tidak tersimpan.");
+                throw new Error(
+                    "Data tidak ditemukan atau perubahan tidak tersimpan."
+                );
             }
 
+            // Perbarui data aktif
             dataPendaftarAktif.status = data.status;
             dataPendaftarAktif.catatan_admin = data.catatan_admin;
 
+            // Perbarui tampilan halaman
             tampilkanStatus(data.status);
             tampilkanTeks("catatanAdmin", data.catatan_admin);
 
@@ -275,10 +308,11 @@ if (formVerifikasi) {
             console.error("Gagal menyimpan verifikasi:", error);
 
             pesanVerifikasi.textContent =
-                "Gagal menyimpan verifikasi. Silakan periksa koneksi dan hak akses.";
+                "Gagal menyimpan verifikasi. Periksa koneksi dan hak akses admin.";
         } finally {
             tombolSimpanVerifikasi.disabled = false;
-            tombolSimpanVerifikasi.textContent = "Simpan Verifikasi";
+            tombolSimpanVerifikasi.textContent =
+                "Simpan Verifikasi";
         }
     });
 }
