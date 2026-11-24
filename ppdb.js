@@ -262,52 +262,79 @@ document.addEventListener("DOMContentLoaded", function () {
                 throw new Error("Nomor pendaftaran tidak valid.");
             }
 
+           
             // 8. Tampilkan bukti pendaftaran
-
             berhasil = true;
-
             form.hidden = true;
 
             const bukti = document.createElement("div");
-            bukti.className = "info-card";
-            bukti.style.textAlign = "center";
-            bukti.style.padding = "35px";
+            bukti.className = "bukti-pendaftaran";
 
             const judul = document.createElement("h2");
-            judul.textContent = "Pendaftaran Berhasil!";
+            judul.textContent = "SMA KATOLIK 1 KABANJAHE";
+
+            const subjudul = document.createElement("h3");
+            subjudul.textContent = "BUKTI PENDAFTARAN PPDB ONLINE";
+
+            const garis = document.createElement("div");
+            garis.className = "garis";
 
             const keterangan = document.createElement("p");
             keterangan.textContent =
-                "Terima kasih telah mendaftar di SMA Katolik 1 Kabanjahe.";
+                "Pendaftaran calon peserta didik berhasil dikirim.";
 
-            const nomor = document.createElement("h3");
-            nomor.textContent = data;
-            nomor.style.margin = "20px 0";
-            nomor.style.color = "#09264a";
+            const nomor = document.createElement("p");
+            nomor.textContent = "Nomor Pendaftaran: " + data;
+
+            const namaSiswa = document.createElement("p");
+            namaSiswa.textContent = "Nama Calon Siswa: " + nama;
+
+            const asalSekolah = document.createElement("p");
+            asalSekolah.textContent = "Asal Sekolah: " + asal;
+
+            const tanggalDaftar = document.createElement("p");
+            tanggalDaftar.textContent =
+                "Tanggal Pendaftaran: " +
+                new Date().toLocaleDateString("id-ID", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                });
 
             const status = document.createElement("p");
             status.textContent = "Status: Menunggu Verifikasi";
 
-            const cetak = document.createElement("button");
-            cetak.type = "button";
-            cetak.textContent = "CETAK BUKTI PENDAFTARAN";
-            cetak.className = "btn";
-            cetak.style.border = "none";
-            cetak.style.cursor = "pointer";
-            cetak.style.marginTop = "20px";
+            const catatan = document.createElement("p");
+            catatan.textContent =
+                "Simpan bukti ini sebagai tanda bahwa pendaftaran telah dikirim. " +
+                "Bukti pendaftaran bukan merupakan tanda bahwa calon siswa telah diterima.";
 
-            cetak.addEventListener("click", function () {
+            const tombolCetak = document.createElement("button");
+            tombolCetak.type = "button";
+            tombolCetak.textContent = "CETAK BUKTI PENDAFTARAN";
+            tombolCetak.className = "btn";
+
+            tombolCetak.addEventListener("click", function () {
                 window.print();
             });
 
-            bukti.append(judul, keterangan, nomor, status, cetak);
+            bukti.append(
+                judul,
+                subjudul,
+                garis,
+                keterangan,
+                nomor,
+                namaSiswa,
+                asalSekolah,
+                tanggalDaftar,
+                status,
+                catatan,
+                tombolCetak
+            );
 
             form.parentNode.appendChild(bukti);
 
-            tampilkanPesan(
-                "Pendaftaran berhasil dikirim.",
-                true
-            );
+            tampilkanPesan("Pendaftaran berhasil dikirim.", true);
 
         } catch (error) {
 
