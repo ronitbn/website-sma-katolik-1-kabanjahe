@@ -434,6 +434,7 @@
    PENGATURAN KHUSUS SAAT DICETAK
 ========================================= */
 
+
 @media print {
 
     @page {
@@ -447,24 +448,30 @@
         font-family: Arial, sans-serif;
     }
 
-    body * {
-        visibility: hidden !important;
+    /* Sembunyikan semua bagian di luar area cetak */
+    body > *:not(main) {
+        display: none !important;
     }
 
-    #areaCetakBukti,
-    #areaCetakBukti * {
-        visibility: visible !important;
+    /* Sembunyikan semua bagian halaman admin di dalam main */
+    main > *:not(#areaCetakBukti) {
+        display: none !important;
     }
 
+    /* Tampilkan hanya bukti verifikasi */
     #areaCetakBukti {
         display: block !important;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        padding: 0;
-        margin: 0;
+        visibility: visible !important;
+        position: static !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
         background: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    #areaCetakBukti * {
+        visibility: visible !important;
         color: #000000 !important;
     }
 
@@ -499,12 +506,18 @@
     }
 
     .tabel-bukti {
+        display: table !important;
         width: 100%;
         border-collapse: collapse;
         font-size: 13px;
     }
 
+    .tabel-bukti tr {
+        display: table-row !important;
+    }
+
     .tabel-bukti td {
+        display: table-cell !important;
         padding: 10px 5px;
         vertical-align: top;
     }
@@ -536,7 +549,7 @@
         width: 45%;
     }
 
-}    
+}
 
     </style>
 
