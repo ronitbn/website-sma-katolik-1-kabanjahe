@@ -328,3 +328,19 @@ if (formVerifikasi) {
 // =============================================
 
 muatDetailPendaftar();
+// =============================================
+// CETAK BUKTI VERIFIKASI PPDB
+// =============================================
+
+const tombolCetakBukti = document.getElementById("tombolCetakBukti");
+
+if (tombolCetakBukti) {
+    tombolCetakBukti.addEventListener("click", function() {
+        if (!dataPendaftarAktif) {
+            alert("Data pendaftar belum tersedia.");
+            return;
+        }
+
+        window.print();
+    });
+}
