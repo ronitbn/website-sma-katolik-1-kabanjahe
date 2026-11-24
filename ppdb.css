@@ -407,3 +407,63 @@ footer p {
         padding: 20px 15px;
     }
 }
+
+/* =====================================
+   CETAK BUKTI PENDAFTARAN PPDB
+   ===================================== */
+
+@media print {
+
+    body * {
+        visibility: hidden !important;
+    }
+
+    .bukti-pendaftaran,
+    .bukti-pendaftaran * {
+        visibility: visible !important;
+    }
+
+    .bukti-pendaftaran {
+        display: block !important;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 35px;
+        background: white;
+        color: #263445;
+        font-family: Arial, sans-serif;
+    }
+
+    .bukti-pendaftaran h2 {
+        color: #09264a;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .bukti-pendaftaran h3 {
+        color: #09264a;
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .bukti-pendaftaran p {
+        margin: 10px 0;
+        font-size: 14px;
+    }
+
+    .bukti-pendaftaran .garis {
+        border-top: 2px solid #09264a;
+        margin: 20px 0;
+    }
+
+    .bukti-pendaftaran button {
+        display: none !important;
+    }
+
+    @page {
+        size: A4;
+        margin: 15mm;
+    }
+}
+
