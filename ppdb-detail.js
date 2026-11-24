@@ -162,6 +162,7 @@ async function muatDetailPendaftar() {
 
     tampilkanTeks("nomorPendaftaran", data.nomor_pendaftaran);
     tampilkanTeks("namaLengkap", data.nama_lengkap);
+    tampilkanTeks("namaLengkapHeader", data.nama_lengkap);
     tampilkanTeks("jenisKelamin", data.jenis_kelamin);
     tampilkanTeks("nisn", data.nisn);
     tampilkanTeks("tempatLahir", data.tempat_lahir);
@@ -226,18 +227,23 @@ async function muatDetailPendaftar() {
 // =============================================
 
 function tampilkanStatus(status) {
-    const elemen = document.getElementById("statusPendaftaran");
+    const elemenHeader = document.getElementById("statusPendaftaranHeader");
+    const elemenPanel = document.getElementById("statusPendaftaran");
 
-    if (!elemen) return;
+    [elemenHeader, elemenPanel].forEach(elemen => {
+        if (!elemen) return;
 
-    elemen.textContent = status || "-";
-    elemen.className = "status";
+        elemen.textContent = status || "-";
+        elemen.className = "status";
 
-    if (status === "Diterima") {
-        elemen.classList.add("diterima");
-    } else if (status === "Ditolak") {
-        elemen.classList.add("ditolak");
-    }
+        if (status === "Diterima") {
+            elemen.classList.add("diterima");
+        } else if (status === "Ditolak") {
+            elemen.classList.add("ditolak");
+        } else if (status === "Sedang Diproses") {
+            elemen.classList.add("diproses");
+        }
+    });
 }
 
 // =============================================
