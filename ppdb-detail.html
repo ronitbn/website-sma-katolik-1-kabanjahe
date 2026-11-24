@@ -381,7 +381,49 @@
                 width: 100%;
             }
         }
+        
+/* TOMBOL CETAK BUKTI VERIFIKASI */
+
+.navigation-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.tombol-cetak {
+    background: #163b65;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tombol-cetak:hover {
+    background: #24588c;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .navigation-actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navigation-actions a,
+    .navigation-actions button {
+        text-align: center;
+        width: 100%;
+    }
+}
+
     </style>
+
 </head>
 
 <body>
@@ -399,27 +441,31 @@
 
     <!-- NAVIGASI -->
 
-    <div class="top-navigation">
-        <div class="page-title">
-            <h2>Detail Pendaftar</h2>
-            <p>Informasi lengkap dan verifikasi calon peserta didik</p>
-        </div>
+    
+<div class="top-navigation">
+    <div class="page-title">
+        <h2>Detail Pendaftar</h2>
+        <p>Informasi lengkap dan verifikasi calon peserta didik</p>
+    </div>
 
+    <div class="navigation-actions">
         <a href="ppdb-pendaftar.html" class="kembali">
             ← Kembali ke Data Pendaftar
         </a>
-    </div>
 
-    <div id="pesanDetail">
-        Memuat informasi pendaftar...
+        <button type="button" id="tombolCetakBukti" class="tombol-cetak">
+            Cetak Bukti Verifikasi
+        </button>
     </div>
+</div>
+
 
     <!-- IDENTITAS UTAMA -->
 
     <section class="identity-card">
         <div class="identity-label">CALON PESERTA DIDIK</div>
 
-        <h2 id="namaLengkap">-</h2>
+       <h2 id="namaLengkapHeader">-</h2>
 
         <p class="identity-number">
             Nomor Pendaftaran:
@@ -427,7 +473,7 @@
         </p>
 
         <div class="identity-status">
-            <span id="statusPendaftaran" class="status">-</span>
+           <span id="statusPendaftaranHeader" class="status">-</span>
         </div>
     </section>
 
