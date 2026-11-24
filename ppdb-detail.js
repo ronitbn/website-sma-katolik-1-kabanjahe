@@ -345,6 +345,9 @@ if (formVerifikasi) {
             // Perbarui tampilan halaman
             tampilkanStatus(data.status);
             tampilkanTeks("catatanAdmin", data.catatan_admin);
+            // Perbarui bukti cetak setelah verifikasi disimpan
+            tampilkanTeks("cetakStatus", data.status);
+            tampilkanTeks("cetakCatatan", data.catatan_admin || "-");
 
             pesanVerifikasi.textContent =
                 "Hasil verifikasi berhasil disimpan.";
