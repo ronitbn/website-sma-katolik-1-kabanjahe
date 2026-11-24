@@ -419,8 +419,124 @@
     .navigation-actions button {
         text-align: center;
         width: 100%;
+        
     }
 }
+    /* =========================================
+   AREA BUKTI CETAK PPDB
+========================================= */
+
+#areaCetakBukti {
+    display: none;
+}
+
+/* =========================================
+   PENGATURAN KHUSUS SAAT DICETAK
+========================================= */
+
+@media print {
+
+    @page {
+        size: A4;
+        margin: 20mm;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-family: Arial, sans-serif;
+    }
+
+    body * {
+        visibility: hidden !important;
+    }
+
+    #areaCetakBukti,
+    #areaCetakBukti * {
+        visibility: visible !important;
+    }
+
+    #areaCetakBukti {
+        display: block !important;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    .kop-bukti {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .kop-bukti h2 {
+        font-size: 19px;
+        margin-bottom: 8px;
+    }
+
+    .kop-bukti h3 {
+        font-size: 17px;
+        margin-bottom: 5px;
+    }
+
+    .kop-bukti p {
+        font-size: 12px;
+    }
+
+    .kop-bukti hr {
+        border: 1px solid #000000;
+        margin-top: 15px;
+    }
+
+    .judul-bukti {
+        text-align: center;
+        font-size: 15px;
+        margin: 25px 0;
+    }
+
+    .tabel-bukti {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+    }
+
+    .tabel-bukti td {
+        padding: 10px 5px;
+        vertical-align: top;
+    }
+
+    .tabel-bukti td:first-child {
+        width: 170px;
+    }
+
+    .tabel-bukti td:nth-child(2) {
+        width: 15px;
+    }
+
+    .keterangan-bukti {
+        margin-top: 30px;
+        font-size: 11px;
+        line-height: 1.6;
+        text-align: justify;
+    }
+
+    .tanda-tangan-bukti {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 45px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .tanda-tangan-bukti > div {
+        width: 45%;
+    }
+
+}    
 
     </style>
 
