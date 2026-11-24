@@ -178,6 +178,45 @@ async function muatDetailPendaftar() {
     // Status dan catatan admin
     tampilkanStatus(data.status);
     tampilkanTeks("catatanAdmin", data.catatan_admin);
+        // Data untuk bukti cetak PPDB
+    tampilkanTeks(
+        "cetakNomorPendaftaran",
+        data.nomor_pendaftaran
+    );
+
+    tampilkanTeks(
+        "cetakNamaLengkap",
+        data.nama_lengkap
+    );
+
+    tampilkanTeks(
+        "cetakAsalSekolah",
+        data.asal_sekolah
+    );
+
+    tampilkanTeks(
+        "cetakJenisKelamin",
+        data.jenis_kelamin
+    );
+
+    tampilkanTeks(
+        "cetakStatus",
+        data.status
+    );
+
+    tampilkanTeks(
+        "cetakCatatan",
+        data.catatan_admin || "-"
+    );
+
+    const tanggalCetak = new Date().toLocaleDateString("id-ID", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    });
+
+    tampilkanTeks("cetakTanggal", tanggalCetak);
+    tampilkanTeks("tanggalTandaTangan", tanggalCetak);
 
     const statusBaru = document.getElementById("statusBaru");
     const catatanBaru = document.getElementById("catatanBaru");
