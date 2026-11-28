@@ -44,39 +44,70 @@ function tampilkanTeks(id, nilai) {
     }
 }
 
-// =============================================
-// TAMPILKAN DOKUMEN PRIVAT
-// =============================================
+ // =============================================
+ // TAMPILKAN DOKUMEN PRIVAT PPDB
+ // =============================================
 
 async function tampilkanDokumen(idElemen, path, namaDokumen) {
     const elemen = document.getElementById(idElemen);
 
     if (!elemen) return;
 
-    elemen.textContent = "Belum tersedia";
+    elemen.textContent = "Memuat dokumen...";
 
-    if (!path) return;
-
-    const { data, error } = await supabaseClient
-        .storage
-        .from("dokumen-ppdb")
-        .createSignedUrl(path, 60);
-
-    if (error || !data?.signedUrl) {
-        console.error("Gagal membuka dokumen:", error);
-        elemen.textContent = "Dokumen belum dapat dibuka";
+    if (!path) {
+        elemen.textContent = "Dokumen belum diunggah";
         return;
     }
 
-    const tautan = document.createElement("a");
+    try {
+        const { data, error } = await supabaseClient
+            .storage
+            .from("ppdb-dokumen")
+            .createSignedUrl(path, 300);
 
-    tautan.href = data.signedUrl;
-    tautan.textContent = "Lihat " + namaDokumen;
-    tautan.target = "_blank";
-    tautan.rel = "noopener noreferrer";
+        if (error || !data?.signedUrl) {
+            console.error("Gagal membuka dokumen:", error);
+            elemen.textContent = "Dokumen belum dapat dibuka";
+            return;
+        }
 
-    elemen.textContent = "";
-    elemen.appendChild(tautan);
+        // FOTO SISWA
+        if (idElemen === "fotoSiswa") {
+            const gambar = document.createElement("img");
+
+            gambar.src = data.signedUrl;
+            gambar.alt = "Foto Siswa";
+            gambar.style.maxWidth = "180px";
+            gambar.style.maxHeight = "220px";
+            gambar.style.objectFit = "contain";
+            gambar.style.borderRadius = "8px";
+
+            const tautan = document.createElement("a");
+            tautan.href = data.signedUrl;
+            tautan.target = "_blank";
+            tautan.rel = "noopener noreferrer";
+
+            tautan.appendChild(gambar);
+
+            elemen.replaceChildren(tautan);
+
+        } else {
+            // DOKUMEN KK, IJAZAH, DAN AKTA
+            const tautan = document.createElement("a");
+
+            tautan.href = data.signedUrl;
+            tautan.textContent = "Lihat " + namaDokumen;
+            tautan.target = "_blank";
+            tautan.rel = "noopener noreferrer";
+
+            elemen.replaceChildren(tautan);
+        }
+
+    } catch (error) {
+        console.error("Kesalahan membuka dokumen:", error);
+        elemen.textContent = "Dokumen belum dapat dibuka";
+    }
 }
 
 // =============================================
