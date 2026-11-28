@@ -196,6 +196,7 @@ async function muatDetailPendaftar() {
     tampilkanTeks("namaLengkapHeader", data.nama_lengkap);
     tampilkanTeks("jenisKelamin", data.jenis_kelamin);
     tampilkanTeks("nisn", data.nisn);
+    tampilkanTeks("nomorHpSiswa", data.no_hp_siswa);
     tampilkanTeks("tempatLahir", data.tempat_lahir);
     tampilkanTeks("tanggalLahir", formatTanggal(data.tanggal_lahir));
     tampilkanTeks("asalSekolah", data.asal_sekolah);
