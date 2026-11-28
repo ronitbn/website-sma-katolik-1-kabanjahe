@@ -129,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const nama = form.elements["nama_lengkap"].value.trim();
             const nisn = form.elements["nisn"].value.trim();
+            const hpSiswa = form.elements["no_hp_siswa"].value.trim();
             const tempat = form.elements["tempat_lahir"].value.trim();
             const tanggal = form.elements["tanggal_lahir"].value;
             const jk = form.elements["jenis_kelamin"].value;
@@ -169,6 +170,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!/^[0-9+\- ]{8,25}$/.test(hp)) {
                 throw new Error("Nomor HP orang tua tidak valid.");
             }
+           // Validasi nomor HP siswa jika diisi
+if (hpSiswa && !/^[0-9+\- ]{8,25}$/.test(hpSiswa)) {
+    throw new Error("Nomor HP siswa tidak valid.");
+}
 
             if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 throw new Error("Alamat email tidak valid.");
@@ -226,6 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const dataPendaftaran = {
                 nama_lengkap: nama,
                 nisn: nisn,
+               no_hp_siswa: hpSiswa || null,
                 tempat_lahir: tempat,
                 tanggal_lahir: tanggal,
                 jenis_kelamin: jk,
